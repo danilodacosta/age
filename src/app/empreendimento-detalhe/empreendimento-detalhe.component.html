@@ -90,6 +90,29 @@
 
     </div>
   </div>
+</div>
+
+<div class="cell-md-6">
+  <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+    data-title-caption="<span style='font-weight: bold'>Data e Horários</span>" data-cls-panel="shadow-1"
+    data-title-icon="<span class='mif-calendar ani-float'></span>">
+    <div class="form-group">
+      <label>Data</label>
+    <input type="text"
+    (change)="onSaveName(dataInput)"
+    #dataInput
+    data-calendar-wide-point="md"
+    data-format="%d/%m/%y"
+    data-input-format="%d/%m/%y"
+    data-picker-mode="true"
+    data-role="calendarpicker"
+    data-dialog-mode="true"
+    [attr.data-special]="datas">
+
+    </div>
+    Data Selecionada : {{dataInput.value}}
+  </div>
 
 </div>
+
 </div>

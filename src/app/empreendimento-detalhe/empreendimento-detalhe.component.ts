@@ -22,6 +22,11 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   public consultandoPrestador = false;
   public convenios: Array<Convenio>;
 
+
+  datas = '20/05/2019,21/05/2019,22/05/2019,23/05/2019,24/05/2019,24/06/2019';
+
+  dataSelecionada: string;
+
   constructor(
     private empreendimentoService: EmpreendimentoService ,
     private route: ActivatedRoute,
@@ -65,6 +70,11 @@ export class EmpreendimentoDetalheComponent implements OnInit {
 public selecionarConvenio(convenio: Convenio): void {
   //this.consultarPrestadores(convenio);
   console.log(convenio);
+}
+
+onSaveName(dataEscolhida: HTMLInputElement) {
+  this.dataSelecionada = (dataEscolhida as HTMLInputElement).value;
+  console.log(this.dataSelecionada);
 }
 
 }

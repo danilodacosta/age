@@ -1,0 +1,33 @@
+export interface Empreendimento {
+  id: number;
+  nomeFantasia: string;
+  razaoSocial: string;
+  cnpj: string;
+  ie: number;
+  im: number;
+  endereco: string;
+  numero: number;
+  complemento: string;
+  bairro: string;
+  codigo_Ibge: number;
+  codigo_ConselhoClasse: number;
+  cep: string;
+  ddi: number;
+  ddd: string;
+  telefone: string;
+  celular_1: string;
+  celular_2: string;
+  celular_3: string;
+  celular_4: string;
+  celular_5: string;
+  email: string;
+  url: string;
+  instagram: string;
+  facebook: string;
+  skype: string;
+  obs: string;
+  logo: string;
+  latitude: number;
+  longitude: number;
+  dataInclusao: string;
+}

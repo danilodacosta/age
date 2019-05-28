@@ -1,0 +1,95 @@
+<div class="remark primary">
+  <p>Selecione convênio e empreendimento para prosseguir com o agendamento.</p>
+</div>
+<div class="row">
+  <div class="cell-md-6">
+    <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+      data-title-caption="<span style='font-weight: bold'>Dados do Empreendimento</span>" data-cls-panel="shadow-1"
+      data-title-icon="<span class='mif-room ani-float'></span>">
+      <address>
+        <strong>{{empreendimento?.razaoSocial}}</strong><br>
+        {{empreendimento?.endereco}}<br>
+        N° {{empreendimento?.numero}} , {{empreendimento?.cep}}<br>
+      </address>
+      <strong>Contatos</strong>
+      <address>
+        <span class='mif-phone'></span><abbr title="Phone"> {{empreendimento?.ddd}} {{empreendimento?.telefone}}</abbr><br>
+        <span class='mif-mail'></span><a href="mailto:#"> {{empreendimento?.email}}</a><br>
+        <span class='mif-earth2'></span><a href="#"> {{empreendimento?.url}}</a>
+      </address>
+
+    </div>
+  </div>
+
+  <div class="cell-md-6">
+    <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+      data-title-caption="<span style='font-weight: bold'>Especialidades e Convênios</span>" data-cls-panel="shadow-1"
+      data-title-icon="<span class='mif-credit-card ani-float'></span>">
+      <div class="form-group">
+        <label>Especialidade</label>
+        <select>
+          <option *ngFor="let especialidade of especialidades" [ngValue]="especialidadeSelecionada">
+              {{ especialidade.nome }}
+            </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Convênio</label>
+        <select [ngModel]="convenioSelecionado" (ngModelChange)="selecionarConvenio($event)" name="convenio">
+            <!--<option [value]="convenio." *ngFor="let convenio of c">{{i}}</option>-->
+        </select>
+      </div>
+      <div data-role="panel">
+        <p style="text-align: center">
+        <img height="60"
+          src="https://firebasestorage.googleapis.com/v0/b/agenda-25f4d.appspot.com/o/Uniodonto.jpg?alt=media&token=fbe9dd3e-b66d-46ae-983a-2c3a4eb69977" />
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+
+<div class="cell-md-6">
+  <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+    data-title-caption="<span style='font-weight: bold'>Prestadores</span>" data-cls-panel="shadow-1"
+    data-title-icon="<span class='mif-user-md ani-float'></span>">
+
+    <div class="items-list">
+      <div class="item">
+        <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
+        <span class="label">Dr. João Evandro</span>
+        <span class="second-label">Ortodontia</span>
+        <span class="second-action mif-chevron-thin-right fg-red ani-horizontal"></span>
+      </div>
+
+      <div class="item">
+        <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
+        <span class="label">Dr. João Evandro</span>
+        <span class="second-label">Prótese</span>
+        <span class="second-action mif-chevron-thin-right fg-red ani-horizontal"></span>
+      </div>
+
+      <div class="item">
+        <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
+        <span class="label">Dr. João Evandro</span>
+        <span class="second-label">Ortodontia</span>
+        <span class="second-action mif-chevron-thin-right fg-red ani-horizontal"></span>
+      </div>
+
+      <div class="item">
+        <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
+        <span class="label">Dr. João Evandro</span>
+        <span class="second-label">Ortodontia</span>
+        <span class="second-action mif-chevron-thin-right fg-red ani-horizontal"></span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>

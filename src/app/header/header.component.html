@@ -4,12 +4,12 @@
     </div>
     <ul class="sidebar-menu">
         <li class="group-title">Menu</li>
-        <li><a><span class="mif-home icon"></span>Home</a></li>
+        <li><a [routerLink]="['/']"><span class="mif-home icon"></span>Home</a></li>
         <li class="divider"></li>
         <li>
             <a href="#" class="dropdown-toggle"><span class="mif-calendar icon"></span>Agendamento</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a href="#">Novo</a></li>
+                <li><a [routerLink]="['/empreendimentos']">Novo</a></li>
                 <li class="divider bg-lightGray"></li>
                 <li><a href="#">Meus Agendamentos</a></li>
                 <li class="divider bg-lightGray"></li>

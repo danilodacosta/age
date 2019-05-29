@@ -1,3 +1,4 @@
+import { ConvenioService } from './convenio/convenio.service';
 import { PrestadorService } from './prestador/prestador.service';
 import { EmpreendimentoService } from './empreendimento/empreendimento.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,7 +36,7 @@ import { ConvenioComponent } from './convenio/convenio.component';
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
   ],
-  providers: [EmpreendimentoService, PrestadorService],
+  providers: [EmpreendimentoService, PrestadorService, ConvenioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

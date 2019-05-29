@@ -1,3 +1,11 @@
-<p>
-  convenio works!
-</p>
+<div class="form-group">
+  <label>Convênio</label>
+  <select [ngModel]="convenioSelecionado" (ngModelChange)="emitAddEvent($event)" name="convenio">
+    <option [ngValue]="convenio" *ngFor="let convenio of convenios">{{convenio.nome}}</option>
+  </select>
+</div>
+<div data-role="panel">
+  <p style="text-align: center">
+    <img *ngIf="convenioSelecionado"  height="60" [alt]="convenioSelecionado?.nome" [src]="convenioSelecionado?.uriFoto" />
+  </p>
+</div>

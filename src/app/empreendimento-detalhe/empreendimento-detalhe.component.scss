@@ -12,7 +12,6 @@ div.row {
 }
 
 div.item {
-
   &:hover {
     cursor: pointer;
     background-color: #e8e8e8;
@@ -27,6 +26,11 @@ div.item {
     @extend .item-label;
     color: #757575;
   }
-
 }
 
+div {
+  button {
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+}

@@ -1,5 +1,5 @@
 <app-header (menuAberto)="toogleMenu($event)"></app-header>
-<div class="layout-mask" *ngIf="openMenu"></div>
+<!--<div class="layout-mask" *ngIf="openMenu"></div>-->
 <div class="container" [class.openMenu]="openMenu">
-  <router-outlet></router-outlet>
+ <router-outlet></router-outlet>
 </div>

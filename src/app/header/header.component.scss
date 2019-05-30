@@ -1,3 +1,7 @@
+aside {
+  z-index: 9999999;
+}
+
 div.menu-header {
   background: #00ae1a;
   padding: 20px;
@@ -8,13 +12,12 @@ div.menu-header {
   }
 }
 
-span#item-menu{
+span#item-menu {
   margin-top: 11px;
   margin-left: -21px;
-  color:#00ae1a;
+  color: #00ae1a;
   transition: all 0.8s ease-in-out;
 }
-
 
 span.pos-absolute {
   margin-top: 17px;

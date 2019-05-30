@@ -1,43 +1,14 @@
 <div data-role="panel" data-cls-title-icon="bg-green fg-white"
-      data-title-caption="<span style='font-weight: bold'>Prestadores</span>" data-cls-panel="shadow-1"
-      data-title-icon="<span class='mif-user-md ani-float'></span>">
+  data-title-caption="<span style='font-weight: bold'>Prestadores</span>" data-cls-panel="shadow-1"
+  data-title-icon="<span class='mif-user-md ani-float'></span>">
 
-      <div class="items-list">
-        <div *ngFor="let prestador of prestadores"  class="item ani-hover-horizontal">
-          <img class="avatar" [src]="prestador?.uriFoto">
-          <span class="label">{{prestador?.tratamento}} {{prestador?.nome}}</span>
-          <span class="second-label">{{prestador?.tipoEspecialidade}}</span>
-          <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
-        </div>
-
-
-        <!--<div class="item ani-hover-horizontal">
-          <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
-          <span class="label">Dr. João Evandro</span>
-          <span class="second-label">Ortodontia</span>
-          <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
-        </div>
-
-        <div class="item ani-hover-horizontal">
-          <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
-          <span class="label">Dr. João Evandro</span>
-          <span class="second-label">Prótese</span>
-          <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
-        </div>
-
-        <div class="item ani-hover-horizontal">
-          <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
-          <span class="label">Dr. João Evandro</span>
-          <span class="second-label">Ortodontia</span>
-          <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
-        </div>
-
-        <div class="item ani-hover-horizontal">
-          <img class="avatar" src="https://metroui.org.ua/images/me.jpg">
-          <span class="label">Dr. João Evandro</span>
-          <span class="second-label">Ortodontia</span>
-          <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
-        </div>-->
-
-      </div>
+  <div class="items-list">
+    <div (click)="prestadorSelecionado(prestador)" *ngFor="let prestador of prestadores"
+      class="item ani-hover-horizontal">
+      <img class="avatar" [src]="prestador?.uriFoto">
+      <span class="label">{{prestador?.tratamento}} {{prestador?.nome}}</span>
+      <span class="second-label">{{prestador?.tipoEspecialidade}}</span>
+      <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
     </div>
+  </div>
+</div>

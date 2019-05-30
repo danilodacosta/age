@@ -1,6 +1,6 @@
 import { Convenio } from './../convenio/convenio.model';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PrestadorService } from './prestador.service';
 import { Prestador } from './prestador.model';
 
@@ -13,7 +13,7 @@ export class PrestadorComponent implements OnInit {
 
   public prestadores: Array<Prestador>;
 
-  constructor( private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute,
     private prestadorService: PrestadorService) { }
 
   ngOnInit() {
@@ -21,14 +21,18 @@ export class PrestadorComponent implements OnInit {
 
   public consultarPrestadores(convenio: Convenio): void {
     console.log('prestador event');
-  //  this.convenioSelecionado = convenio;
-  //  this.consultandoPrestador = true;
+    //  this.convenioSelecionado = convenio;
+    //  this.consultandoPrestador = true;
     const empreendimentoId = this.route.snapshot.params['id'];
     this.prestadorService.prestadores(empreendimentoId, convenio.id)
-    .subscribe(prestadores => {
-      this.prestadores = prestadores;
-      //this.consultandoPrestador = false;
-    });
-}
+      .subscribe(prestadores => {
+        this.prestadores = prestadores;
+        //this.consultandoPrestador = false;
+      });
+  }
+
+  public prestadorSelecionado(prestador: Prestador): void {
+      console.log('prestador ' + prestador.id);
+  }
 
 }

@@ -1,10 +1,11 @@
 import { EmpreendimentoService } from './../empreendimento/empreendimento.service';
 import { Convenio } from './../convenio/convenio.model';
 import { Empreendimento } from './../empreendimento/empreendimento.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Prestador } from '../prestador/prestador.model';
 import { ActivatedRoute } from '@angular/router';
 import { PrestadorService } from '../prestador/prestador.service';
+import { PrestadorComponent } from '../prestador/prestador.component';
 
 @Component({
   selector: 'app-empreendimento-detalhe',
@@ -13,9 +14,11 @@ import { PrestadorService } from '../prestador/prestador.service';
 })
 export class EmpreendimentoDetalheComponent implements OnInit {
 
+
+  @ViewChild('prestador') public prestadores: PrestadorComponent;
+
   public empreendimento: Empreendimento;
   public especialidades: Array<any>;
-  public prestadores: Array<Prestador>;
   public especialidadeSelecionada: string;
   public convenio: Convenio;
   public convenioSelecionado: Convenio;
@@ -56,7 +59,7 @@ export class EmpreendimentoDetalheComponent implements OnInit {
       });
   }
 
-  private consultarPrestadores(convenio: Convenio): void {
+  /* private consultarPrestadores(convenio: Convenio): void {
     this.convenioSelecionado = convenio;
     this.consultandoPrestador = true;
     const empreendimentoId = this.route.snapshot.params['id'];
@@ -65,11 +68,10 @@ export class EmpreendimentoDetalheComponent implements OnInit {
       this.prestadores = prestadores;
       this.consultandoPrestador = false;
     });
-}
+}*/
 
 public selecionarConvenio(convenio: Convenio): void {
-  //this.consultarPrestadores(convenio);
-  console.log(convenio);
+  this.prestadores.consultarPrestadores(convenio);
 }
 
 onSaveName(dataEscolhida: HTMLInputElement) {

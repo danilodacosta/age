@@ -1,6 +1,6 @@
 import { Convenio } from './../convenio/convenio.model';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PrestadorService } from './prestador.service';
 import { Prestador } from './prestador.model';
 
@@ -10,29 +10,32 @@ import { Prestador } from './prestador.model';
   styleUrls: ['./prestador.component.scss']
 })
 export class PrestadorComponent implements OnInit {
+  @Output() selecionarPrestador = new EventEmitter();
 
   public prestadores: Array<Prestador>;
+  consultandoPrestador = false;
+  public prestadorSelecionado: any;
 
-  constructor(private route: ActivatedRoute,
-    private prestadorService: PrestadorService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private prestadorService: PrestadorService
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public consultarPrestadores(convenio: Convenio): void {
-    console.log('prestador event');
-    //  this.convenioSelecionado = convenio;
-    //  this.consultandoPrestador = true;
+    this.consultandoPrestador = true;
     const empreendimentoId = this.route.snapshot.params['id'];
-    this.prestadorService.prestadores(empreendimentoId, convenio.id)
+    this.prestadorService
+      .prestadores(empreendimentoId, convenio.id)
       .subscribe(prestadores => {
         this.prestadores = prestadores;
-        //this.consultandoPrestador = false;
+        this.consultandoPrestador = false;
       });
   }
 
-  public prestadorSelecionado(prestador: Prestador): void {
-      console.log('prestador ' + prestador.id);
+  public emitAddEvent(prestador: Prestador): void {
+    this.selecionarPrestador.emit(prestador);
+    this.prestadorSelecionado = prestador;
   }
-
 }

@@ -1,14 +1,21 @@
-<div data-role="panel" data-cls-title-icon="bg-green fg-white"
+<div *ngIf="prestadores" data-role="panel" data-cls-title-icon="bg-green fg-white"
   data-title-caption="<span style='font-weight: bold'>Prestadores</span>" data-cls-panel="shadow-1"
   data-title-icon="<span class='mif-user-md ani-float'></span>">
 
-  <div class="items-list">
-    <div (click)="prestadorSelecionado(prestador)" *ngFor="let prestador of prestadores"
-      class="item ani-hover-horizontal">
+  <div *ngIf="consultandoPrestador" data-role="activity" data-type="simple" data-style="color"></div>
+
+  <div class="items-list" *ngIf="prestadores && !consultandoPrestador">
+    <div [class.prestador-selecionado]="prestadorSelecionado === prestador"
+         (click)="emitAddEvent(prestador)"
+         *ngFor="let prestador of prestadores" class="item ani-hover-horizontal">
       <img class="avatar" [src]="prestador?.uriFoto">
       <span class="label">{{prestador?.tratamento}} {{prestador?.nome}}</span>
       <span class="second-label">{{prestador?.tipoEspecialidade}}</span>
-      <span class="second-action mif-chevron-thin-right ani-horizontal"></span>
+      <span [class.ani-float]="prestadorSelecionado === prestador"
+            [class.fg-red]="prestadorSelecionado === prestador"
+            [class.mif-chevron-thin-left]="prestadorSelecionado === prestador"
+            [class.mif-chevron-thin-right]="prestadorSelecionado !== prestador"
+            class="second-action"></span>
     </div>
   </div>
 </div>

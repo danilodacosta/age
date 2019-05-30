@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'age-app';
+  openMenu = true;
+
+  toogleMenu(openMenu) {
+    this.openMenu = openMenu;
+  }
 }
-
-

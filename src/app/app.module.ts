@@ -1,3 +1,4 @@
+import { DateFormatPipe } from './shared/DateFormatPipe.pipe';
 import { ConvenioService } from './convenio/convenio.service';
 import { PrestadorService } from './prestador/prestador.service';
 import { EmpreendimentoService } from './empreendimento/empreendimento.service';
@@ -16,6 +17,7 @@ import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EmpreendimentoDetalheComponent } from './empreendimento-detalhe/empreendimento-detalhe.component';
 import { ConvenioComponent } from './convenio/convenio.component';
+import { DataHorarioComponent } from './agendamento/data-horario/data-horario.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { ConvenioComponent } from './convenio/convenio.component';
     EmpreendimentoComponent,
     AgendamentoComponent,
     EmpreendimentoDetalheComponent,
-    ConvenioComponent
+    ConvenioComponent,
+    DateFormatPipe,
+    DataHorarioComponent
   ],
   imports: [
     FormsModule,

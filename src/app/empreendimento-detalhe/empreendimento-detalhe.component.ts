@@ -50,7 +50,6 @@ export class EmpreendimentoDetalheComponent implements OnInit {
       });
   }
 
-
   private consultarEmpreendimento(): void {
     this.empreendimentoService
       .empreendimentoById(this.route.snapshot.params['id'])
@@ -72,6 +71,10 @@ export class EmpreendimentoDetalheComponent implements OnInit {
 
 public selecionarConvenio(convenio: Convenio): void {
   this.prestadores.consultarPrestadores(convenio);
+}
+
+public selecionarPrestador(prestador: Prestador): void {
+  console.log('prestador selecionado : id -' + prestador.id);
 }
 
 onSaveName(dataEscolhida: HTMLInputElement) {

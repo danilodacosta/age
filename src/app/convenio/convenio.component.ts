@@ -8,6 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./convenio.component.scss']
 })
 export class ConvenioComponent implements OnInit {
+
   @Output() selecionarConvenio = new EventEmitter();
 
   constructor(private convenioService: ConvenioService) {}

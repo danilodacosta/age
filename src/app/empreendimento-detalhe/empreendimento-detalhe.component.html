@@ -41,13 +41,8 @@
 </div>
 
 <div class="row">
-
   <div class="cell-md-6">
-
-    <app-prestador #prestador>
-
-    </app-prestador>
-
+    <app-prestador #prestador (selecionarPrestador)="selecionarPrestador($event)"></app-prestador>
   </div>
 
   <div class="cell-md-6">

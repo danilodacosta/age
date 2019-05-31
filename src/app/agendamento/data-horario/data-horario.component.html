@@ -1,3 +1,34 @@
-<p>
-  data-horario works!
-</p>
+<div data-role="panel" data-cls-title-icon="bg-green fg-white"
+      data-title-caption="<span style='font-weight: bold'>Data e Horários</span>" data-cls-panel="shadow-1"
+      data-title-icon="<span class='mif-calendar ani-float'></span>">
+      <div class="form-group">
+        <label>Data</label>
+        <input type="text" (change)="onChangeData(dataInput)" #dataInput data-calendar-wide-point="md"
+          data-format="%d/%m/%y" data-input-format="%d/%m/%y" data-picker-mode="true" data-role="calendarpicker"
+          data-dialog-mode="true" [attr.data-special]="datas">
+
+      </div>
+      <!-- Data Selecionada : {{dataInput.value}}-->
+      <div class="row">
+        <div class="cell-12">
+          <label>Horários Disponíveis</label>
+          <br>
+          <div>
+            <button class="image-button bg-green drop-shadow primary rounded ">
+              <span class="mif-alarm icon"></span>
+              <span class="caption">12:00</span>
+            </button>
+
+            <button class="image-button bg-green drop-shadow rounded primary">
+              <span class="mif-alarm icon"></span>
+              <span class="caption">13:30</span>
+            </button>
+
+            <button class="image-button bg-green  drop-shadow rounded primary">
+              <span class="mif-alarm icon"></span>
+              <span class="caption">14:30</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

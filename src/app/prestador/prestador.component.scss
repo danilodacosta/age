@@ -23,7 +23,7 @@ div.item {
     background-color: #e8e8e8;
     transition: 0.4s ease-in;
     @include shadow-box();
-    transition: all 0.8s ease-in-out;
+    transition: all 1s ease-in-out;
   }
 
 }

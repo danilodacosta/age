@@ -1,3 +1,4 @@
+import { DataHorarioService } from './agendamento/data-horario/data-horario.service';
 import { DateFormatPipe } from './shared/DateFormatPipe.pipe';
 import { ConvenioService } from './convenio/convenio.service';
 import { PrestadorService } from './prestador/prestador.service';
@@ -40,7 +41,7 @@ import { DataHorarioComponent } from './agendamento/data-horario/data-horario.co
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
   ],
-  providers: [EmpreendimentoService, PrestadorService, ConvenioService],
+  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DataHorarioService, DateFormatPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

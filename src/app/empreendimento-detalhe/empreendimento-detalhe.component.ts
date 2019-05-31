@@ -1,10 +1,12 @@
+import { DateFormatPipe } from './../shared/DateFormatPipe.pipe';
+import { Agendamento } from './agendamento.model';
+import { DataHorarioComponent } from './../agendamento/data-horario/data-horario.component';
 import { EmpreendimentoService } from './../empreendimento/empreendimento.service';
 import { Convenio } from './../convenio/convenio.model';
 import { Empreendimento } from './../empreendimento/empreendimento.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Prestador } from '../prestador/prestador.model';
 import { ActivatedRoute } from '@angular/router';
-import { PrestadorService } from '../prestador/prestador.service';
 import { PrestadorComponent } from '../prestador/prestador.component';
 
 @Component({
@@ -16,6 +18,7 @@ export class EmpreendimentoDetalheComponent implements OnInit {
 
 
   @ViewChild('prestador') public prestadores: PrestadorComponent;
+  @ViewChild('dataHorario') public dataHorario: DataHorarioComponent;
 
   public empreendimento: Empreendimento;
   public especialidades: Array<any>;
@@ -25,16 +28,11 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   public consultandoPrestador = false;
   public convenios: Array<Convenio>;
 
-
-  datas = '20/05/2019,21/05/2019,22/05/2019,23/05/2019,24/05/2019,24/06/2019';
-
-  dataSelecionada: string;
-
   constructor(
-    private empreendimentoService: EmpreendimentoService ,
+    private empreendimentoService: EmpreendimentoService,
     private route: ActivatedRoute,
-    private prestadorService: PrestadorService,
-    ) { }
+    private dateFomartPipe: DateFormatPipe,
+  ) { }
 
   ngOnInit() {
     this.consultarEspecialidades();
@@ -58,28 +56,31 @@ export class EmpreendimentoDetalheComponent implements OnInit {
       });
   }
 
-  /* private consultarPrestadores(convenio: Convenio): void {
-    this.convenioSelecionado = convenio;
-    this.consultandoPrestador = true;
-    const empreendimentoId = this.route.snapshot.params['id'];
-    this.prestadorService.prestadores(empreendimentoId, convenio.id)
-    .subscribe(prestadores => {
-      this.prestadores = prestadores;
-      this.consultandoPrestador = false;
-    });
-}*/
+  public selecionarConvenio(convenio: Convenio): void {
+    this.prestadores.consultarPrestadores(convenio);
+  }
 
-public selecionarConvenio(convenio: Convenio): void {
-  this.prestadores.consultarPrestadores(convenio);
-}
+  public selecionarPrestador(prestador: Prestador): void {
+    const dadosAgendamento: Agendamento = this.dadosAgendamento();
+    dadosAgendamento.Prestador = prestador.id.toString();
+    this.dataHorario.consultaDataDisponiveis(dadosAgendamento);
+  }
 
-public selecionarPrestador(prestador: Prestador): void {
-  console.log('prestador selecionado : id -' + prestador.id);
-}
+  private dadosAgendamento(): Agendamento {
 
-onSaveName(dataEscolhida: HTMLInputElement) {
-  this.dataSelecionada = (dataEscolhida as HTMLInputElement).value;
-  console.log(this.dataSelecionada);
-}
+    const dadosAgendamento: Agendamento = new Agendamento();
+
+    dadosAgendamento.Empreendimento = this.route.snapshot.params['id'];
+    dadosAgendamento.Prestador = '';
+    dadosAgendamento.DataInicial = this.dateFomartPipe.transform(new Date());
+    dadosAgendamento.DataFinal = undefined;
+    dadosAgendamento.TipoAgenda = '1';
+    dadosAgendamento.Periodo = ' ';
+    dadosAgendamento.QuantReg = '0';
+    dadosAgendamento.Hora = ' ';
+    dadosAgendamento.HoraPeriodo = ' ';
+
+    return dadosAgendamento;
+  }
 
 }

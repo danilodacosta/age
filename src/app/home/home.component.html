@@ -1,19 +1,24 @@
 <div class="remark primary shadow-1">
   <h3>Bem Vindo ao AGE !</h3>
-  <p>Realize <a [routerLink]="['/empreendimentos']">agendamentos</a> e seu pré-atendimento com alguns cliques em seu aplicativo.</p>
+  <p>Realize <a [routerLink]="['/empreendimentos']">agendamentos</a> e seu pré-atendimento com alguns cliques em seu
+    aplicativo.</p>
   <br>
   <a [routerLink]="['/empreendimentos']" class="button primary outline drop-shadow">Iniciar</a>
 </div>
-<!--
 
-<input type="text"
-(change)="onSaveName(dataInput)"
-#dataInput
-data-calendar-wide-point="md"
-data-format="%d/%m/%y"
-data-input-format="%d/%m/%y"
-data-picker-mode="true"
-data-role="calendarpicker"
-data-dialog-mode="true"
-[attr.data-special]="datas">
-{{dataInput.value}}-->
+
+<!--<div id="dialog" class="dialog" data-role="dialog">
+    <div class="dialog-title">Confirmar Agendamento ?</div>
+    <div class="dialog-content">
+      <p> Deseja confirmar o seu agendamento com o Dr. João ? </p>
+      <hr>
+      <span class="mif-calendar"></span><span> : 23-05-2019 </span><br>
+      <span class="mif-alarm"></span><span> : 13:00hs</span>
+    </div>
+    <div class="dialog-actions">
+      <button class="button success js-dialog-close">Agendar</button>
+      <button class="button alert js-dialog-close">Cancelar</button>
+    </div>
+  </div>
+  <button class="button primary" onclick="Metro.dialog.open('#dialog')">Open dialog</button>
+-->

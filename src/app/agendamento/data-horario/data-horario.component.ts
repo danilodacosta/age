@@ -1,7 +1,8 @@
+import { Data } from './data-horario.model';
 import { DateFormatPipe } from './../../shared/DateFormatPipe.pipe';
 import { Agendamento } from './../../empreendimento-detalhe/agendamento.model';
 import { DataHorarioService } from './data-horario.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-data-horario',
@@ -10,33 +11,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataHorarioComponent implements OnInit {
 
-  datas = '20/05/2019,21/05/2019,22/05/2019,23/05/2019,24/05/2019,24/06/2019';
+  @Output() selecionarData = new EventEmitter();
 
-  dataSelecionada: string;
+  public datasConsulta = '';
+  public dataSelecionada: string;
+  public horarios: Data;
+  public datasDisponiveis: Array<Data>;
+  public horariosDisponiveis: Array<any>;
+  public statusConsulta: number;
+  consultandoHorarios = false;
 
-  // public datasDisponiveis: Array<Horarios> = [];
+  constructor(
+    private dataHorarioService: DataHorarioService,
+    private dateFomartPipe: DateFormatPipe
+  ) {}
 
-  constructor(private dataHorarioService: DataHorarioService, private dateFomartPipe: DateFormatPipe) { }
-
-  ngOnInit() {
-
-  }
-
-
+  ngOnInit() {}
 
   public consultaDataDisponiveis(dadosAgendamento: Agendamento): void {
-    dadosAgendamento.DataFinal = this.dateFomartPipe.transform(this.calcularProximosDias());
+    this.consultandoHorarios = true;
+    this.datasDisponiveis = new Array<Data>();
+    this.horarios = new Data();
+    dadosAgendamento.DataFinal = this.dateFomartPipe.transform(
+      this.calcularProximosDias()
+    );
     this.dataHorarioService
       .dataHorariosDisponiveis(dadosAgendamento)
-      .subscribe(horarios => {
-        console.log('horarios : ' + horarios.results);
+      .subscribe(retorno => {
+        this.statusConsulta = retorno.Status;
+        this.consultandoHorarios = false;
+        if (retorno.Status === 201) {
+          return;
+        }
+        this.datasConsulta = '';
+        this.horariosDisponiveis = retorno.Classe.HorariosDisponiveis;
+        this.montaDatasDisponiveis();
       });
   }
 
-  //
   onChangeData(dataEscolhida: HTMLInputElement) {
     this.dataSelecionada = (dataEscolhida as HTMLInputElement).value;
-    console.log(this.dataSelecionada);
+    this.horarios = this.datasDisponiveis.find(
+      data => data.data === this.dataSelecionada
+    );
+  }
+
+  onChangeHorarioSelecionado() {
+
   }
 
   private calcularProximosDias(): Date {
@@ -46,26 +67,27 @@ export class DataHorarioComponent implements OnInit {
     return novaData;
   }
 
-/*
   private montaDatasDisponiveis(): void {
-
-    let novaData: Horarios;
+    let novaData: Data;
     this.horariosDisponiveis.forEach(element => {
-      const dataExistente = this.datasDisponiveis.find((data) => data.data === element.Data);
+      const dataExistente = this.datasDisponiveis.find(
+        data => data.data === element.Data
+      );
       if (dataExistente) {
         dataExistente.horarios.push(element.HoraInicio);
       } else {
-        novaData = new Horarios;
+        novaData = new Data();
         novaData.data = element.Data;
         novaData.horarios = [];
         novaData.horarios.push(element.HoraInicio);
         this.datasDisponiveis.push(novaData);
+        this.datasConsulta = this.datasConsulta + novaData.data + ',';
       }
     });
 
+    this.datasConsulta.substring(0, this.datasConsulta.length - 1);
+
     console.log(this.datasDisponiveis);
-
+    console.log(this.datasConsulta.substring(0, this.datasConsulta.length - 1));
   }
-*/
-
 }

@@ -1,3 +1,5 @@
+import { DateFormatStringPipe } from './shared/DataFormatPipeString.pipe';
+import { AgendamentoService } from './agendamento/agendamento.service';
 import { DataHorarioService } from './agendamento/data-horario/data-horario.service';
 import { DateFormatPipe } from './shared/DateFormatPipe.pipe';
 import { ConvenioService } from './convenio/convenio.service';
@@ -19,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmpreendimentoDetalheComponent } from './empreendimento-detalhe/empreendimento-detalhe.component';
 import { ConvenioComponent } from './convenio/convenio.component';
 import { DataHorarioComponent } from './agendamento/data-horario/data-horario.component';
+import { AgendamentoDetalheComponent } from './agendamento-detalhe/agendamento-detalhe.component';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { DataHorarioComponent } from './agendamento/data-horario/data-horario.co
     EmpreendimentoDetalheComponent,
     ConvenioComponent,
     DateFormatPipe,
-    DataHorarioComponent
+    DateFormatStringPipe,
+    DataHorarioComponent,
+    AgendamentoDetalheComponent
   ],
   imports: [
     FormsModule,
@@ -41,7 +46,7 @@ import { DataHorarioComponent } from './agendamento/data-horario/data-horario.co
     RouterModule.forRoot(ROUTES),
     HttpClientModule,
   ],
-  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DataHorarioService, DateFormatPipe],
+  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DataHorarioService, DateFormatPipe, DateFormatStringPipe, AgendamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

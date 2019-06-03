@@ -1,5 +1,5 @@
 <div class="remark primary">
-  <p>Selecione convênio e estabelecimento para prosseguir com o agendamento.</p>
+  <p>Selecione o convênio e o especialista para prosseguir com o agendamento.</p>
 </div>
 <div class="row">
   <div class="cell-md-6">
@@ -57,11 +57,13 @@
     <p> Deseja confirmar o seu agendamento com o {{prestadorSelecionado?.tratamento}} {{prestadorSelecionado?.nome}} ?
     </p>
     <hr>
-    <span class="mif-calendar"></span><span> : 00-00-0000 </span><br>
-    <span class="mif-alarm"></span><span> : 00:00hs</span>
+    <span class="mif-calendar"></span><span> : {{dataHoraSelecionado?.data}} </span><br>
+    <span class="mif-alarm"></span><span> : {{dataHoraSelecionado?.hora}}hs</span>
   </div>
   <div class="dialog-actions">
-    <button class="button success js-dialog-close">Agendar</button>
+    <form>
+    <button (click)="agendar()" class="button success js-dialog-close">Agendar</button>
     <button class="button alert js-dialog-close">Cancelar</button>
+  </form>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { Data } from './data-horario.model';
 import { DateFormatPipe } from './../../shared/DateFormatPipe.pipe';
-import { Agendamento } from './../../empreendimento-detalhe/agendamento.model';
+import { DadosConsultaAgendamento } from './../agendamento.model';
 import { DataHorarioService } from './data-horario.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
@@ -10,7 +10,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./data-horario.component.scss']
 })
 export class DataHorarioComponent implements OnInit {
-
   @Output() selecionarData = new EventEmitter();
 
   public datasConsulta = '';
@@ -24,11 +23,11 @@ export class DataHorarioComponent implements OnInit {
   constructor(
     private dataHorarioService: DataHorarioService,
     private dateFomartPipe: DateFormatPipe
-  ) { }
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
-  public consultaDataDisponiveis(dadosAgendamento: Agendamento): void {
+  public consultaDataDisponiveis(dadosAgendamento: DadosConsultaAgendamento): void {
     this.consultandoHorarios = true;
     this.datasDisponiveis = new Array<Data>();
     this.horarios = new Data();
@@ -55,13 +54,11 @@ export class DataHorarioComponent implements OnInit {
   }
 
   onChangeHorarioSelecionado(horarioSelecionado: string) {
+    const datahora: any = new Object();
+    datahora.data = this.dataSelecionada;
+    datahora.hora = horarioSelecionado;
 
-    //let datahora: any;
-//datahora.data = this.dataSelecionada;
-//datahora.hora = horarioSelecionado;
-
-    this.selecionarData.emit(horarioSelecionado);
-
+    this.selecionarData.emit(datahora);
   }
 
   private calcularProximosDias(): Date {
@@ -93,15 +90,20 @@ export class DataHorarioComponent implements OnInit {
     this.dataSelecionada = this.datasDisponiveis[0].data;
     this.consultaHorarios();
 
-
-    console.log(this.datasDisponiveis);
-    console.log(this.datasConsulta.substring(0, this.datasConsulta.length - 1));
-
+    // console.log(this.datasDisponiveis);
+    //console.log(this.datasConsulta.substring(0, this.datasConsulta.length - 1));
   }
 
   private consultaHorarios(): void {
     this.horarios = this.datasDisponiveis.find(
       data => data.data === this.dataSelecionada
     );
+  }
+
+  public limparHorarios(): void {
+    this.horariosDisponiveis = [];
+    this.datasDisponiveis = [];
+    this.statusConsulta = 500;
+    this.consultandoHorarios = false;
   }
 }

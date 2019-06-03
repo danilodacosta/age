@@ -9,6 +9,9 @@ import { Prestador } from '../prestador/prestador.model';
 import { ActivatedRoute } from '@angular/router';
 import { PrestadorComponent } from '../prestador/prestador.component';
 
+import Swal from 'sweetalert2';
+declare var Metro: any;
+
 @Component({
   selector: 'app-empreendimento-detalhe',
   templateUrl: './empreendimento-detalhe.component.html',
@@ -27,6 +30,9 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   public convenioSelecionado: Convenio;
   public consultandoPrestador = false;
   public convenios: Array<Convenio>;
+  public prestadorSelecionado: Prestador;
+  public dataHora: any;
+
 
   constructor(
     private empreendimentoService: EmpreendimentoService,
@@ -37,6 +43,7 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   ngOnInit() {
     this.consultarEspecialidades();
     this.consultarEmpreendimento();
+
   }
 
   private consultarEspecialidades(): void {
@@ -64,6 +71,7 @@ export class EmpreendimentoDetalheComponent implements OnInit {
     const dadosAgendamento: Agendamento = this.dadosAgendamento();
     dadosAgendamento.Prestador = prestador.id.toString();
     this.dataHorario.consultaDataDisponiveis(dadosAgendamento);
+    this.prestadorSelecionado = prestador;
   }
 
   private dadosAgendamento(): Agendamento {
@@ -81,6 +89,11 @@ export class EmpreendimentoDetalheComponent implements OnInit {
     dadosAgendamento.HoraPeriodo = ' ';
 
     return dadosAgendamento;
+  }
+
+  public confirmarAgendamento(dataHora: any): void {
+    Metro.dialog.open('#dialog');
+    // this.dataHora = dataHora;
   }
 
 }

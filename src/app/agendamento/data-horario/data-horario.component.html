@@ -11,9 +11,9 @@
   <div *ngIf="datasDisponiveis.length > 0">
     <div class="form-group">
       <label>Data</label>
-      <input type="text" (change)="onChangeData(dataInput)" #dataInput data-calendar-wide-point="md"
-        data-format="%d-%m-%Y" data-input-format="%d-%m-%y" data-picker-mode="true" data-role="calendarpicker"
-        data-dialog-mode="true" [attr.data-special]="datasConsulta">
+      <input type="text" [value]="dataSelecionada" (change)="onChangeData(dataInput)" #dataInput
+        data-calendar-wide-point="md" data-format="%d-%m-%Y" data-input-format="%d-%m-%y" data-picker-mode="true"
+        data-role="calendarpicker" data-dialog-mode="true" [attr.data-special]="datasConsulta">
     </div>
 
     <div class="row">
@@ -23,7 +23,7 @@
         <br>
 
         <div>
-          <button *ngFor="let horario of horarios.horarios" class="image-button bg-green drop-shadow primary rounded ">
+          <button (click)="onChangeHorarioSelecionado(horario)" *ngFor="let horario of horarios.horarios" class="image-button bg-green drop-shadow primary rounded ">
             <span class="mif-alarm icon"></span>
             <span class="caption">{{horario}}</span>
           </button>

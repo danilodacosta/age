@@ -18,6 +18,8 @@ export class ConvenioComponent implements OnInit {
   ngOnInit() {
     this.convenioService.convenios().subscribe(convenios => {
       this.convenios = convenios;
+      this.convenioSelecionado = this.convenios[0];
+      this.selecionarConvenio.emit(this.convenioSelecionado);
     });
   }
 

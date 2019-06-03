@@ -24,9 +24,9 @@ export class DataHorarioComponent implements OnInit {
   constructor(
     private dataHorarioService: DataHorarioService,
     private dateFomartPipe: DateFormatPipe
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   public consultaDataDisponiveis(dadosAgendamento: Agendamento): void {
     this.consultandoHorarios = true;
@@ -51,12 +51,16 @@ export class DataHorarioComponent implements OnInit {
 
   onChangeData(dataEscolhida: HTMLInputElement) {
     this.dataSelecionada = (dataEscolhida as HTMLInputElement).value;
-    this.horarios = this.datasDisponiveis.find(
-      data => data.data === this.dataSelecionada
-    );
+    this.consultaHorarios();
   }
 
-  onChangeHorarioSelecionado() {
+  onChangeHorarioSelecionado(horarioSelecionado: string) {
+
+    //let datahora: any;
+//datahora.data = this.dataSelecionada;
+//datahora.hora = horarioSelecionado;
+
+    this.selecionarData.emit(horarioSelecionado);
 
   }
 
@@ -86,8 +90,18 @@ export class DataHorarioComponent implements OnInit {
     });
 
     this.datasConsulta.substring(0, this.datasConsulta.length - 1);
+    this.dataSelecionada = this.datasDisponiveis[0].data;
+    this.consultaHorarios();
+
 
     console.log(this.datasDisponiveis);
     console.log(this.datasConsulta.substring(0, this.datasConsulta.length - 1));
+
+  }
+
+  private consultaHorarios(): void {
+    this.horarios = this.datasDisponiveis.find(
+      data => data.data === this.dataSelecionada
+    );
   }
 }

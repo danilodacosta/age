@@ -1,12 +1,12 @@
 <div class="remark primary">
-  <p>Selecione um empreendimento para prosseguir com o agendamento.</p>
+  <p>Selecione um estabelecimento para prosseguir com o agendamento.</p>
 </div>
 
 <div class="grid">
   <div class="row">
     <div class="cell-md-6" *ngFor="let empreendimento of empreendimentos">
       <div data-role="panel" data-cls-title-icon="bg-green fg-white"
-        data-title-caption="<span style='font-weight: bold'>Empreendimento</span>"
+        data-title-caption="<span style='font-weight: bold'>Estabelecimento</span>"
         data-cls-panel="shadow-1" data-title-icon="<span class='mif-room ani-float'></span>">
         <address>
           <strong> {{empreendimento?.razaoSocial}}</strong><br>

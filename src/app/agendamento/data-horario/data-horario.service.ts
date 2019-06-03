@@ -8,9 +8,8 @@ import { Injectable } from "@angular/core";
 
 @Injectable()
 export class DataHorarioService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
   public dataHorariosDisponiveis(agendamento: Agendamento) {
-    // console.log(`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(agendamento)}`);
     return (
       this.http
         .get<Data[]>(
@@ -18,17 +17,10 @@ export class DataHorarioService {
             agendamento
           )}`
         )
-        //return this.http.get<MenuItem[]>(`${MEAT_API}/restaurants/${id}/menu`)
         .pipe(
           map(resposta => {
             return JSON.parse(JSON.stringify(resposta));
           }),
-          //console.log('resposta' + JSON.stringify(resposta.Classe.HorariosDisponiveis).toString());
-          //console.log(JSON.stringify(resposta.toString()).Classe);
-
-          // JSON.parse(resposta.toString()).Classe;
-          //console.log(resposta.Classe.HorariosDisponiveis);
-
           retry(3),
           catchError(ErrorHandler.handleError)
         )

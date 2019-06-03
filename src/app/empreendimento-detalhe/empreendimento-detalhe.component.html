@@ -1,10 +1,10 @@
 <div class="remark primary">
-  <p>Selecione convênio e empreendimento para prosseguir com o agendamento.</p>
+  <p>Selecione convênio e estabelecimento para prosseguir com o agendamento.</p>
 </div>
 <div class="row">
   <div class="cell-md-6">
     <div data-role="panel" data-cls-title-icon="bg-green fg-white"
-      data-title-caption="<span style='font-weight: bold'>Dados do Empreendimento</span>" data-cls-panel="shadow-1"
+      data-title-caption="<span style='font-weight: bold'>Dados do Estabelecimento</span>" data-cls-panel="shadow-1"
       data-title-icon="<span class='mif-room ani-float'></span>">
       <address>
         <strong>{{empreendimento?.razaoSocial}}</strong><br>
@@ -46,6 +46,22 @@
   </div>
 
   <div class="cell-md-6">
-    <app-data-horario #dataHorario></app-data-horario>
+    <app-data-horario #dataHorario (selecionarData)="confirmarAgendamento($event)"></app-data-horario>
+  </div>
+</div>
+
+
+<div id="dialog" class="dialog" data-role="dialog">
+  <div class="dialog-title">Confirmar Agendamento ?</div>
+  <div class="dialog-content">
+    <p> Deseja confirmar o seu agendamento com o {{prestadorSelecionado?.tratamento}} {{prestadorSelecionado?.nome}} ?
+    </p>
+    <hr>
+    <span class="mif-calendar"></span><span> : 00-00-0000 </span><br>
+    <span class="mif-alarm"></span><span> : 00:00hs</span>
+  </div>
+  <div class="dialog-actions">
+    <button class="button success js-dialog-close">Agendar</button>
+    <button class="button alert js-dialog-close">Cancelar</button>
   </div>
 </div>

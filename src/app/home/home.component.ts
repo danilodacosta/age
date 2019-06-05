@@ -15,7 +15,6 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
   }
 
   onSaveName(dataEscolhida: HTMLInputElement) {

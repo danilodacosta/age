@@ -40,6 +40,7 @@
 
 </div>
 
+
 <div class="row">
   <div class="cell-md-6">
     <app-prestador #prestador (selecionarPrestador)="selecionarPrestador($event)"></app-prestador>
@@ -61,9 +62,8 @@
     <span class="mif-alarm"></span><span> : {{dataHoraSelecionado?.hora}}hs</span>
   </div>
   <div class="dialog-actions">
-    <form>
-    <button (click)="agendar()" class="button success js-dialog-close">Agendar</button>
+    <button type="submit" (click)="agendar()" class="button success js-dialog-close">Agendar</button>
     <button class="button alert js-dialog-close">Cancelar</button>
-  </form>
   </div>
 </div>
+

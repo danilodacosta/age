@@ -43,10 +43,10 @@ import { AgendamentoDetalheComponent } from './agendamento-detalhe/agendamento-d
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES,  {useHash: true, onSameUrlNavigation: 'reload'}),
     HttpClientModule,
   ],
-  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DataHorarioService, DateFormatPipe, DateFormatStringPipe, AgendamentoService],
+  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DateFormatPipe, DateFormatStringPipe, AgendamentoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

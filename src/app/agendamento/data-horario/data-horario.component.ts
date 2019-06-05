@@ -7,7 +7,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'app-data-horario',
   templateUrl: './data-horario.component.html',
-  styleUrls: ['./data-horario.component.scss']
+  styleUrls: ['./data-horario.component.scss'],
+  providers: [DataHorarioService]
 })
 export class DataHorarioComponent implements OnInit {
   @Output() selecionarData = new EventEmitter();
@@ -34,6 +35,8 @@ export class DataHorarioComponent implements OnInit {
     dadosAgendamento.DataFinal = this.dateFomartPipe.transform(
       this.calcularProximosDias()
     );
+    dadosAgendamento.Hora = this.getHoraAtual();
+    console.log('dados consulta : ' + JSON.stringify(dadosAgendamento));
     this.dataHorarioService
       .dataHorariosDisponiveis(dadosAgendamento)
       .subscribe(retorno => {
@@ -66,6 +69,11 @@ export class DataHorarioComponent implements OnInit {
     const novaData = new Date();
     novaData.setDate(data.getDate() + 30);
     return novaData;
+  }
+
+  private getHoraAtual(): string {
+    const hora = new Date().toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1');
+    return hora.substring(0, 5).toString();
   }
 
   private montaDatasDisponiveis(): void {

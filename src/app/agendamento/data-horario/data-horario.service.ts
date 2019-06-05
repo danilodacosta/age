@@ -10,6 +10,9 @@ import { Injectable } from "@angular/core";
 export class DataHorarioService {
   constructor(private http: HttpClient) { }
   public dataHorariosDisponiveis(dadosAgendamentoConsulta: DadosConsultaAgendamento) {
+    console.log(`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(
+      dadosAgendamentoConsulta
+    )}`)
     return (
       this.http
         .get<Data[]>(

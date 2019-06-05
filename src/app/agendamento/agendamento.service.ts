@@ -10,6 +10,9 @@ import { Observable } from "rxjs";
 export class AgendamentoService {
   constructor(private http: HttpClient) {}
   public agendar(agendamento: Agendamento) {
+    console.log( `${AGE_API}/AgendamentoConsulta/Adicionar?Json=${JSON.stringify(
+      agendamento
+    )}`)
     return this.http
     .get<Agendamento>(
       `${AGE_API}/AgendamentoConsulta/Adicionar?Json=${JSON.stringify(

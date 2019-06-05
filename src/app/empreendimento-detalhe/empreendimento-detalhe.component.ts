@@ -13,6 +13,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { Prestador } from "../prestador/prestador.model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PrestadorComponent } from "../prestador/prestador.component";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 import Swal from "sweetalert2";
 declare var Metro: any;
@@ -36,18 +37,22 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   public prestadorSelecionado: Prestador;
   public dataHoraSelecionado: any;
 
+  agendamentoForm: FormGroup;
+
   constructor(
     private empreendimentoService: EmpreendimentoService,
     private agendamentoService: AgendamentoService,
     private route: ActivatedRoute,
     private dateFomartPipe: DateFormatPipe,
     private dateFomartStringPipe: DateFormatStringPipe,
-    private router: Router
+    private router: Router,
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {
     this.consultarEspecialidades();
     this.consultarEmpreendimento();
+    this.agendamentoForm = this.formBuilder.group({});
   }
 
   private consultarEspecialidades(): void {
@@ -83,16 +88,24 @@ export class EmpreendimentoDetalheComponent implements OnInit {
   public confirmarAgendamento(dataHora: any): void {
     this.dataHoraSelecionado = dataHora;
     Metro.dialog.open("#dialog");
+
   }
 
   public agendar(): void {
-    console.log("agendar()");
     const agendamento: Agendamento = this.agendamento();
-
     this.agendamentoService.agendar(agendamento).subscribe(retorno => {
       if (retorno.Status === 200) {
-        this.router.navigate(["/agendamento-detalhe"]);
-        Swal.fire("", `Agendamento Realizado com sucesso !`, "success");
+
+        this.router.navigateByUrl('/agendamento-detalhe');
+            //this.router.navigate(["agendamento-detalhe"]);
+            this.router.onSameUrlNavigation = 'ignore';
+
+
+
+
+
+      } else {
+        console.log("status : " + retorno.Status);
       }
     });
   }

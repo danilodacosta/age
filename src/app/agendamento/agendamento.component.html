@@ -1,0 +1,59 @@
+<div *ngIf="!agendado">
+  <div class="remark primary">
+    <p>Selecione o convênio e o especialista para prosseguir com o agendamento.</p>
+  </div>
+
+  <div class="row">
+
+    <div class="cell-md-6">
+      <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+        data-title-caption="<span style='font-weight: bold'>Dados do Estabelecimento</span>" data-cls-panel="shadow-1"
+        data-title-icon="<span class='mif-room ani-float'></span>">
+        <address>
+          <strong>{{empreendimento?.razaoSocial}}</strong><br>
+          {{empreendimento?.endereco}}<br>
+          N° {{empreendimento?.numero}} , {{empreendimento?.cep}}<br>
+        </address>
+        <strong>Contatos</strong>
+        <address>
+          <span class='mif-phone'></span><abbr title="Phone"> {{empreendimento?.ddd}}
+            {{empreendimento?.telefone}}</abbr><br>
+          <span class='mif-mail'></span><a href="mailto:#"> {{empreendimento?.email}}</a><br>
+          <span class='mif-earth2'></span><a href="#"> {{empreendimento?.url}}</a>
+        </address>
+      </div>
+    </div>
+
+    <div class="cell-md-6">
+      <div data-role="panel" data-cls-title-icon="bg-green fg-white"
+        data-title-caption="<span style='font-weight: bold'>Especialidades e Convênios</span>" data-cls-panel="shadow-1"
+        data-title-icon="<span class='mif-credit-card ani-float'></span>">
+        <div class="form-group">
+          <label>Especialidade</label>
+          <select>
+            <option *ngFor="let especialidade of especialidades" [ngValue]="especialidadeSelecionada">
+              {{ especialidade.nome }}
+            </option>
+          </select>
+        </div>
+        <app-convenio (selecionarConvenio)="selecionarConvenio($event)"></app-convenio>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="cell-md-6">
+      <app-prestador #prestador (selecionarPrestador)="selecionarPrestador($event)"></app-prestador>
+    </div>
+
+    <div class="cell-md-6" id="dtfooter">
+      <app-data-horario #dataHorario (selecionarData)="confirmarAgendamento($event)"></app-data-horario>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="agendado">
+  <app-agendamento-detalhe></app-agendamento-detalhe>
+</div>

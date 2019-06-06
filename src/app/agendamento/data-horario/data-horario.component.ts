@@ -36,7 +36,6 @@ export class DataHorarioComponent implements OnInit {
       this.calcularProximosDias()
     );
     dadosAgendamento.Hora = this.getHoraAtual();
-    console.log('dados consulta : ' + JSON.stringify(dadosAgendamento));
     this.dataHorarioService
       .dataHorariosDisponiveis(dadosAgendamento)
       .subscribe(retorno => {

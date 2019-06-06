@@ -1,4 +1,4 @@
-import { Convenio } from './../convenio/convenio.model';
+import { Convenio } from '../convenio/convenio.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PrestadorService } from './prestador.service';
@@ -6,8 +6,8 @@ import { Prestador } from './prestador.model';
 
 @Component({
   selector: 'app-prestador',
-  templateUrl: './prestador.component.html',
-  styleUrls: ['./prestador.component.scss']
+  templateUrl: '././prestador.component.html',
+  styleUrls: ['././prestador.component.scss']
 })
 export class PrestadorComponent implements OnInit {
   @Output() selecionarPrestador = new EventEmitter();
@@ -25,7 +25,7 @@ export class PrestadorComponent implements OnInit {
 
   public consultarPrestadores(convenio: Convenio): void {
     this.consultandoPrestador = true;
-    const empreendimentoId = this.route.snapshot.params['id'];
+    const empreendimentoId = this.route.snapshot.params.id;
     this.prestadorService
       .prestadores(empreendimentoId, convenio.id)
       .subscribe(prestadores => {

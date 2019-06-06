@@ -17,7 +17,6 @@ export class EmpreendimentoComponent implements OnInit {
     this.empreendimentoService.empreendimentos()
     .subscribe((empreendimentos =>  {
       this.empreendimentos = empreendimentos;
-      console.log(this.empreendimentos);
     }));
   }
 

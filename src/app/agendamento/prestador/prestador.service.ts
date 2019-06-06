@@ -1,10 +1,10 @@
 import { Prestador } from './prestador.model';
-import { Query } from './../querys';
+import { Query } from '../../querys';
 import { retry, catchError, map } from 'rxjs/operators';
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ErrorHandler } from './../app.error-handler';
-import { AGE_API } from '../app.api';
+import { ErrorHandler } from '../../app.error-handler';
+import { AGE_API } from '../../app.api';
 
 
 @Injectable()

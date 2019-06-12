@@ -22,6 +22,7 @@ import { DataHorarioComponent } from './agendamento/data-horario/data-horario.co
 import { AgendamentoDetalheComponent } from './agendamento-detalhe/agendamento-detalhe.component';
 
 import { CacheInterceptor } from './http-interceptors/cache-interceptor';
+import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { CacheInterceptor } from './http-interceptors/cache-interceptor';
     DateFormatPipe,
     DateFormatStringPipe,
     DataHorarioComponent,
-    AgendamentoDetalheComponent
+    AgendamentoDetalheComponent,
+    MeusAgendamentosComponent
   ],
   imports: [
     FormsModule,

@@ -25,3 +25,13 @@ span.pos-absolute {
   font-weight: bold;
   color: #00ae1a;
 }
+
+.active {
+  border-left: 5px solid #499029;
+  font-weight: bold;
+  color: #4bae2d;
+
+  &:hover {
+    color: white;
+  }
+}

@@ -20,10 +20,9 @@ div.shadow-1 {
 }
 
 ul.d-menu {
-
   margin-top: 35px;
 
- /* li {
+  /* li {
     width: 132px;
     height: 50px;
     padding: 10px;
@@ -31,4 +30,28 @@ ul.d-menu {
       margin-right: 10px;
     }
   }*/
+}
+
+div.box {
+  background: rgb(60, 60, 189);
+  width: 120px;
+  height: 128px;
+  margin-left: -20px;
+  color: white;
+  padding: 10px;
+  margin-top: -4px;
+  span {
+    font-size: 3em;
+    text-align: center;
+    display: block;
+  }
+  span.detail {
+    font-size: 2em;
+    margin-top: -20px;
+  }
+}
+
+div#grid {
+  height: 88px;
+  margin-top: -16px;
 }

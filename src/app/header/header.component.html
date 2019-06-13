@@ -9,9 +9,9 @@
         <li>
             <a href="#" class="dropdown-toggle"><span class="mif-calendar icon"></span>Agendamento</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Novo</a></li>
+                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Novo</a></li>
                 <li class="divider bg-lightGray"></li>
-                <li><a (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Meus Agendamentos</a></li>
+                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Meus Agendamentos</a></li>
                 <li class="divider bg-lightGray"></li>
             </ul>
         </li>

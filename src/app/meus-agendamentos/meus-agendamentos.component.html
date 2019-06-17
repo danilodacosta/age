@@ -1,90 +1,60 @@
 <br>
 <div class="container">
 
-  <div class="row box-shadow">
-    <!--<div style="float: right" class="pos-relative">
-            <button class="button square dropdown-toggle">
-              <span class="mif-more-vert mif-3x"></span>
-            </button>
-            <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-              <li><a href="#">Detalhes</a></li>
-              <li><a href="#">Reagendar</a></li>
-              <li><a href="#">Cancelar</a></li>
-            </ul>
-          </div>-->
-
-    <div class="box">
-      <span>21</span>
-      <span class="detail">JUL</span>
-      <span class="detail-hour">9:40</span>
-    </div>
-
-    <div class=agendamento-detalhe>
-      <p style="font-size: 20px;">Dr. João Evandro</p>
-      <span>Reabilitação Oral</span>
-      <hr>
-      <span class=" status tally alert">Cancelado</span>
-    </div>
-  </div>
-
-  <hr>
-
-
   <div class="box-shadow">
 
+    <div style="float: right" class="pos-relative">
+      <button class="button square dropdown-toggle">
+        <span class="mif-more-vert mif-3x"></span>
+      </button>
+      <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
+        <li><a [routerLink]="['/meus-agendamentos' , 1]" >Visualizar</a></li>
+        <li><a [routerLink]="['/meus-agendamentos/'+ 1 + '/reagendar']">Reagendar</a></li>
+        <li><a (click)="cancelar()">Cancelar</a></li>
+      </ul>
+    </div>
 
-     <div style="float: right" class="pos-relative">
-        <button class="button square dropdown-toggle">
-          <span class="mif-more-vert mif-3x"></span>
-        </button>
-        <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-          <li><a href="#">Detalhes</a></li>
-          <li><a href="#">Reagendar</a></li>
-          <li><a href="#">Cancelar</a></li>
-        </ul>
+    <div class="row">
+      <div class="box">
+        <span>21</span>
+        <span class="detail">JUL</span>
       </div>
 
-<div class="row">
+      <div class=agendamento-detalhe>
+        <p style="font-size: 20px;">Dr. João Evandro</p>
+        <span>Reabilitação Oral</span>
+        <hr>
+        <span class="status tally success">Agendado</span>
+        <span class="status tally success detail-hour">9:40</span>
+      </div>
+    </div>
+  </div>
+  <br>
 
-    <div class="box">
-      <span>21</span>
-      <span class="detail">JUL</span>
-      <span class="detail-hour">9:40</span>
+  <div class="box-shadow">
+    <div style="float: right" class="pos-relative">
+      <button class="button square dropdown-toggle">
+        <span class="mif-more-vert mif-3x"></span>
+      </button>
+      <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
+        <li><a [routerLink]="['/meus-agendamentos' , 1]">Visualizar</a></li>
+        <li><a href="#">Reagendar</a></li>
+        <li><a href="#">Cancelar</a></li>
+      </ul>
     </div>
 
-    <div class=agendamento-detalhe>
+    <div class="row">
+      <div class="box">
+        <span>21</span>
+        <span class="detail">JUL</span>
+      </div>
 
-      <p style="font-size: 20px;">Dr. João Evandro</p>
-      <span>Reabilitação Oral</span>
-      <hr>
-      <span class=" status tally success">Agendado</span>
+      <div class=agendamento-detalhe>
+        <p style="font-size: 20px;">Dr. João Evandro</p>
+        <span>Reabilitação Oral</span>
+        <hr>
+        <span class=" status tally alert">Cancelado</span>
+      </div>
     </div>
-
   </div>
-
-  </div>
-
 </div>
-
-
-
-
-
-<!--<div id="detalhes" style="width: 50%" class=shadow-1>
-
-          <div style="float: right" class="pos-relative">
-              <button class="button square dropdown-toggle">
-                <span class="mif-more-vert mif-3x"></span>
-              </button>
-              <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-                <li><a href="#">Detalhes</a></li>
-                <li><a href="#">Reagendar</a></li>
-                <li><a href="#">Cancelar</a></li>
-              </ul>
-            </div>
-
-            <span class="badge inline bg-green fg-white">Agendado</span>
-
-            <p> Dr. João Evandro </p>
-            <span> Reabilitação Oral </span>
-            -->

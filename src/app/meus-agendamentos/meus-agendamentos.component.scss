@@ -26,28 +26,26 @@ ul.d-menu {
 
 div.box {
   outline-color: #b7c6cd;
-background-color: #607d8b;
+  background-color: #607d8b;
   width: 84px;
   height: 76px;
   color: white;
   padding: 10px;
   margin: 10px;
   border-radius: .25rem;
+  text-shadow: 0px 1px #111010;
 
   span {
     font-weight: bold;
     font-size: 26px;
     text-align: center;
     display: block;
-    margin-top: -12px;
+    margin-top: -5px;
   }
+
   span.detail {
     font-size: 16px;
     margin-top: -6px;
-  }
-  span.detail-hour {
-    font-size: 13px;
-    margin-top: -1px;
   }
 }
 
@@ -61,9 +59,24 @@ div.agendamento-detalhe {
   span.status {
     margin-top: -12px;
   }
-}
 
+  span.detail-hour {
+    margin-left: 10px;
+  }
+}
 
 .box-shadow {
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.26);
+}
+
+
+div {
+  button.dropdown-toggle {
+    margin-right: 11px;
+    margin-top: 9px;
+  }
+}
+
+hr {
+  background-color: #e5e5e5;
 }

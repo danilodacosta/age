@@ -1,0 +1,34 @@
+  <div class="divisor">
+    <span class="fg-green mif-calendar mif-2x"></span>
+    <span class="titulo-secao"> Data e horários disponíveis</span>
+  </div>
+  <div *ngIf="datasDisponiveis.length > 0 else consultandoHorarios">
+    <div class="form-group">
+      <label>Data</label>
+      <input type="text" [value]="dataSelecionada" (change)="onChangeData(dataInput)" #dataInput
+        data-calendar-wide-point="md" data-format="%d-%m-%Y" data-input-format="%d-%m-%y" data-picker-mode="true"
+        data-role="calendarpicker" data-dialog-mode="true" [attr.data-special]="datasConsulta">
+    </div>
+
+    <div class="row">
+        <div class="cell-12">
+          <hr>
+          <label>Horários Disponíveis</label>
+          <br>
+
+          <div>
+            <button (click)="onChangeHorarioSelecionado(horario)" *ngFor="let horario of horarios.horarios" class="image-button bg-green drop-shadow primary rounded ">
+              <span class="mif-alarm icon"></span>
+              <span class="caption">{{horario}}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+<ng-template #consultandoHorarios>
+    <div data-role="activity" data-type="simple" data-style="color"></div>
+</ng-template>
+
+

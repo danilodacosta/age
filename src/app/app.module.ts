@@ -23,6 +23,9 @@ import { AgendamentoDetalheComponent } from './agendamento-detalhe/agendamento-d
 
 import { CacheInterceptor } from './http-interceptors/cache-interceptor';
 import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos.component';
+import { DetalhesComponent } from './meus-agendamentos/visualizar-agendamento/detalhes/detalhes.component';
+import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
+import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-agendamento/visualizar-agendamento.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos
     DateFormatStringPipe,
     DataHorarioComponent,
     AgendamentoDetalheComponent,
-    MeusAgendamentosComponent
+    MeusAgendamentosComponent,
+    DetalhesComponent,
+    ReagendarComponent,
+    VisualizarAgendamentoComponent
   ],
   imports: [
     FormsModule,

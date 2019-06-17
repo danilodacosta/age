@@ -22,36 +22,48 @@ div.shadow-1 {
 ul.d-menu {
   margin-top: 35px;
 
-  /* li {
-    width: 132px;
-    height: 50px;
-    padding: 10px;
-    span {
-      margin-right: 10px;
-    }
-  }*/
 }
 
 div.box {
-  background: rgb(60, 60, 189);
-  width: 120px;
-  height: 128px;
-  margin-left: -20px;
+  outline-color: #b7c6cd;
+background-color: #607d8b;
+  width: 84px;
+  height: 76px;
   color: white;
   padding: 10px;
-  margin-top: -4px;
+  margin: 10px;
+  border-radius: .25rem;
+
   span {
-    font-size: 3em;
+    font-weight: bold;
+    font-size: 26px;
     text-align: center;
     display: block;
+    margin-top: -12px;
   }
   span.detail {
-    font-size: 2em;
-    margin-top: -20px;
+    font-size: 16px;
+    margin-top: -6px;
+  }
+  span.detail-hour {
+    font-size: 13px;
+    margin-top: -1px;
   }
 }
 
-div#grid {
-  height: 88px;
-  margin-top: -16px;
+div.agendamento-detalhe {
+  p {
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: -5px;
+    font-weight: bold;
+  }
+  span.status {
+    margin-top: -12px;
+  }
+}
+
+
+.box-shadow {
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.26);
 }

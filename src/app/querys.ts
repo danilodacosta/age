@@ -37,4 +37,28 @@ export class Query {
     const query = `SELECT Id, nome, uriFoto FROM CONVENIOS&Type=ExecuteReader`;
     return query;
   }
+
+  public static consultarAgendamentos(): string {
+    const query = `
+      SELECT a.Id, a.IdPrestador, p.Nome , p.Tratamento,
+          TipoEspecialidades.Nome as TipoEspecialidade , IdEmpreendimento,
+          DataAgendada, HoraInicial, IdConvenio, Situacao
+      FROM ClientesAgendamentos a
+        INNER JOIN Prestadores p ON a.IdPrestador = p.Id
+        INNER JOIN PrestadoresEspecialidadesTipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdPrestador = p.Id
+        INNER JOIN TipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdTipoEspecilidade = TipoEspecialidades.Id
+        WHERE DataAgendada >= getDate() AND Situacao is null`;
+    return query;
+  }
+
+  public static consultarPrestadoresAndEspecialidade(idPrestador: number): string {
+    const query = `SELECT distinct Prestadores.Id, Prestadores.Nome, Prestadores.Tratamento,
+                       TipoEspecialidades.Nome as TipoEspecialidade,  Prestadores.UriFoto
+               FROM EmpreendimentosPrestadores
+               INNER JOIN Prestadores ON EmpreendimentosPrestadores.IdPrestador = Prestadores.Id
+   INNER JOIN PrestadoresEspecialidadesTipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdPrestador = Prestadores.Id
+               INNER JOIN TipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdTipoEspecilidade = TipoEspecialidades.Id
+               WHERE EmpreendimentosPrestadores.IdPrestador = ${idPrestador}`;
+    return query;
+  }
 }

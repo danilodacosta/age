@@ -1,59 +1,29 @@
 <br>
 <div class="container">
-
-  <div class="box-shadow">
-
+   <div class="box-shadow" *ngFor="let item of agendamentos">
     <div style="float: right" class="pos-relative">
       <button class="button square dropdown-toggle">
         <span class="mif-more-vert mif-3x"></span>
       </button>
       <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-        <li><a [routerLink]="['/meus-agendamentos' , 1]" >Visualizar</a></li>
-        <li><a [routerLink]="['/meus-agendamentos/'+ 1 + '/reagendar']">Reagendar</a></li>
-        <li><a (click)="cancelar()">Cancelar</a></li>
+        <li><a [routerLink]="['/meus-agendamentos' , item?.id]" >Visualizar</a></li>
+        <li><a [routerLink]="['/meus-agendamentos/'+ item?.id + '/reagendar']">Reagendar</a></li>
+        <li><a (click)="cancelar(item)">Cancelar</a></li>
       </ul>
     </div>
 
     <div class="row">
       <div class="box">
-        <span>21</span>
-        <span class="detail">JUL</span>
+        <span>{{item?.dataAgendada | slice:8:10}}</span>
+        <span class="detail-mes"> {{item?.dataAgendada | mesFormat}}</span>
+        <span class="detail-hour">{{item?.horaInicial | slice:0:5}}</span>
       </div>
 
       <div class=agendamento-detalhe>
-        <p style="font-size: 20px;">Dr. João Evandro</p>
-        <span>Reabilitação Oral</span>
+        <p style="font-size: 20px;">{{item?.tratamento}} {{item?.nome}}</p>
+        <span>{{item?.tipoEspecialidade}}</span>
         <hr>
         <span class="status tally success">Agendado</span>
-        <span class="status tally success detail-hour">9:40</span>
-      </div>
-    </div>
-  </div>
-  <br>
-
-  <div class="box-shadow">
-    <div style="float: right" class="pos-relative">
-      <button class="button square dropdown-toggle">
-        <span class="mif-more-vert mif-3x"></span>
-      </button>
-      <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-        <li><a [routerLink]="['/meus-agendamentos' , 1]">Visualizar</a></li>
-        <li><a href="#">Reagendar</a></li>
-        <li><a href="#">Cancelar</a></li>
-      </ul>
-    </div>
-
-    <div class="row">
-      <div class="box">
-        <span>21</span>
-        <span class="detail">JUL</span>
-      </div>
-
-      <div class=agendamento-detalhe>
-        <p style="font-size: 20px;">Dr. João Evandro</p>
-        <span>Reabilitação Oral</span>
-        <hr>
-        <span class=" status tally alert">Cancelado</span>
       </div>
     </div>
   </div>

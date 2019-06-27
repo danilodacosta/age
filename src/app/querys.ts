@@ -39,17 +39,27 @@ export class Query {
   }
 
   public static consultarAgendamentos(): string {
-    const query = `
-      SELECT a.Id, a.IdPrestador, p.Nome , p.Tratamento,
-          TipoEspecialidades.Nome as TipoEspecialidade , IdEmpreendimento,
-          DataAgendada, HoraInicial, IdConvenio, Situacao
-      FROM ClientesAgendamentos a
+    // tslint:disable-next-line:max-line-length
+    const query = `SELECT a.Id, a.IdPrestador, p.Nome , p.Tratamento, TipoEspecialidades.Nome as TipoEspecialidade , IdEmpreendimento, DataAgendada, HoraInicial, IdConvenio, Situacao
+        FROM ClientesAgendamentos a
         INNER JOIN Prestadores p ON a.IdPrestador = p.Id
         INNER JOIN PrestadoresEspecialidadesTipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdPrestador = p.Id
         INNER JOIN TipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdTipoEspecilidade = TipoEspecialidades.Id
-        WHERE DataAgendada >= getDate() AND Situacao is null`;
+        WHERE DataAgendada >= getDate() AND Situacao is null&Type=ExecuteReader`;
     return query;
   }
+
+  public static consultarAgendamentoPorId(id: number): string {
+    // tslint:disable-next-line:max-line-length
+    const query = `SELECT a.Id, a.IdPrestador, p.Nome , p.Tratamento, TipoEspecialidades.Nome as TipoEspecialidade , IdEmpreendimento, DataAgendada, HoraInicial, IdConvenio, Situacao
+        FROM ClientesAgendamentos a
+        INNER JOIN Prestadores p ON a.IdPrestador = p.Id
+        INNER JOIN PrestadoresEspecialidadesTipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdPrestador = p.Id
+        INNER JOIN TipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdTipoEspecilidade = TipoEspecialidades.Id
+        WHERE a.Id = ${id}&Type=ExecuteReader`;
+    return query;
+  }
+
 
   public static consultarPrestadoresAndEspecialidade(idPrestador: number): string {
     const query = `SELECT distinct Prestadores.Id, Prestadores.Nome, Prestadores.Tratamento,

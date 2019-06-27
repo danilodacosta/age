@@ -1,3 +1,4 @@
+import { MesFormatPipe } from './shared/MesFormatPipe.pipe';
 import { DateFormatStringPipe } from './shared/DataFormatPipeString.pipe';
 import { AgendamentoService } from './agendamento/agendamento.service';
 import { DateFormatPipe } from './shared/DateFormatPipe.pipe';
@@ -39,6 +40,7 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
     ConvenioComponent,
     DateFormatPipe,
     DateFormatStringPipe,
+    MesFormatPipe,
     DataHorarioComponent,
     AgendamentoDetalheComponent,
     MeusAgendamentosComponent,
@@ -54,7 +56,12 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
     HttpClientModule,
   ],
   // { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
-  providers: [EmpreendimentoService, PrestadorService, ConvenioService , DateFormatPipe, DateFormatStringPipe, AgendamentoService],
+  providers: [EmpreendimentoService,
+              PrestadorService,
+              ConvenioService,
+              AgendamentoService,
+              DateFormatPipe,
+              DateFormatStringPipe, MesFormatPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

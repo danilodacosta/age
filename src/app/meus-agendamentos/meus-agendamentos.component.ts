@@ -1,3 +1,4 @@
+import { AgendamentoService } from './../agendamento/agendamento.service';
 import { Component, OnInit } from '@angular/core';
 
 declare var Metro: any;
@@ -9,21 +10,34 @@ declare var Metro: any;
 })
 export class MeusAgendamentosComponent implements OnInit {
 
-  constructor() { }
+  agendamentos: any[];
+
+  constructor(private agendamentoService: AgendamentoService) { }
 
   ngOnInit() {
+    this.consultarAgendamento();
   }
 
-  cancelar(): void {
+  consultarAgendamento() {
+    this.agendamentoService.consultarAgendamento().subscribe((response: any[]) => {
+      this.agendamentos = response;
+      console.log(this.agendamentos);
+    });
+  }
+
+  cancelar(agendameto: any): void {
+
+    const hora = agendameto.horaInicial.slice(0, 5);
+    const data = this.convertDataPtBr(agendameto.dataAgendada.slice(0, 10));
 
     Metro.dialog.create({
       title: 'Cancelar Agendamento ?',
       clsDialog: 'alert',
       content: `Deseja cancelar o seu agendamento com o
-      <strong>Dr. João Evandro</strong> ?
+      <strong>${agendameto.tratamento} ${agendameto.nome}</strong> ?
       <hr>
-      <span class='mif-calendar'></span><span> : 27-05-08 </span><br>
-      <span class="mif-alarm"></span><span> : 13:00hs</span>`,
+      <span class='mif-calendar'></span><span> : ${data} </span><br>
+      <span class="mif-alarm"></span><span> : ${hora} hs</span>`,
       actions: [
         {
           caption: 'Cancelar',
@@ -39,6 +53,13 @@ export class MeusAgendamentosComponent implements OnInit {
       ]
     });
 
+  }
+
+  private convertDataPtBr(value: string): string {
+   const ano = value.substring(0, 4);
+   const mes = value.substring(5, 7);
+   const dia = value.substring(8, 10);
+   return `${dia}/${mes}/${ano}`;
   }
 
 }

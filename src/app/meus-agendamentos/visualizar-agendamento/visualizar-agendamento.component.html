@@ -8,21 +8,21 @@
   </div>
   <div class="avatar">
     <img
-      src="https://firebasestorage.googleapis.com/v0/b/agenda-25f4d.appspot.com/o/Dr%20Jo%C3%A3o%20Evandro.jpg?alt=media&token=801a18c2-bc75-4a17-98f1-8f7cb2575651">
+      [src]="prestador?.uriFoto">
   </div>
 
   <div class="dados-prestador">
-    <p><strong>Dr. Joao Evandro</strong></p>
-    <span>Reabilitação Oral</span>
+    <p><strong>{{prestador?.tratamento}} {{prestador?.nome}}</strong></p>
+    <span>{{prestador?.tipoEspecialidade}}</span>
   </div>
 
   <div class="divisor">
     <span class="fg-green mif-location mif-2x"></span>
     <span class="titulo-secao"> Local de Atendimento</span>
   </div>
-  <strong>Núcleo Integrado de Odontologia</strong><br>
-  <span>Edifício Metropolitan Tower, Rua dos Mundurucus, Sala 1104</span><br>
-  <span>Bairro : Cremação</span>
+  <strong>{{empreendimento?.razaoSocial}}</strong><br>
+  <span>{{empreendimento.endereco}} ,{{empreendimento?.complemento}}</span><br>
+  <span>Bairro : {{empreendimento?.bairro}}</span>
 
   <router-outlet></router-outlet>
 

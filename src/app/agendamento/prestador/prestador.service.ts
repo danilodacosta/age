@@ -28,4 +28,14 @@ export class PrestadorService {
       catchError(ErrorHandler.handleError)
     );
   }
+
+  public prestadorAndEspecialidade(idPrestador: number)  {
+    // console.log(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarPrestadoresAndEspecialidade(idPrestador)}`)
+    return this.http.get<Prestador>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarPrestadoresAndEspecialidade(idPrestador)}`)
+    .pipe (
+      map(resposta => JSON.parse(resposta.toString()).classe),
+      retry(3),
+      catchError(ErrorHandler.handleError)
+    );
+  }
 }

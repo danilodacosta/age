@@ -49,7 +49,6 @@ export class AgendamentoService {
   }
 
   agendamentoById(id: number) {
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
@@ -57,7 +56,6 @@ export class AgendamentoService {
         Expires: '0'
       })
     };
-
     return this.http.get<any>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentoPorId(id)}`, httpOptions).pipe(
       map(resposta => JSON.parse(resposta.toString()).classe),
       catchError(ErrorHandler.handleError)

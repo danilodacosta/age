@@ -68,7 +68,7 @@ export class Query {
                INNER JOIN Prestadores ON EmpreendimentosPrestadores.IdPrestador = Prestadores.Id
    INNER JOIN PrestadoresEspecialidadesTipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdPrestador = Prestadores.Id
                INNER JOIN TipoEspecialidades ON PrestadoresEspecialidadesTipoEspecialidades.IdTipoEspecilidade = TipoEspecialidades.Id
-               WHERE EmpreendimentosPrestadores.IdPrestador = ${idPrestador}`;
+               WHERE EmpreendimentosPrestadores.IdPrestador = ${idPrestador}&Type=ExecuteReader`;
     return query;
   }
 }

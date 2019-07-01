@@ -10,6 +10,7 @@ export class DetalhesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('iniciei');
   }
 
 }

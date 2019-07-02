@@ -7,10 +7,9 @@
     <span class="titulo-secao"> Informações do Prestador</span>
   </div>
   <div class="avatar">
-    <img
-      [src]="prestador?.uriFoto">
+    <div *ngIf="!prestador?.uriFoto" data-role="activity" data-type="simple" data-style="color"></div>
+    <img *ngIf="prestador?.uriFoto"  [src]="prestador?.uriFoto">
   </div>
-
   <div class="dados-prestador">
     <p><strong>{{prestador?.tratamento}} {{prestador?.nome}}</strong></p>
     <span>{{prestador?.tipoEspecialidade}}</span>
@@ -21,7 +20,7 @@
     <span class="titulo-secao"> Local de Atendimento</span>
   </div>
   <strong>{{empreendimento?.razaoSocial}}</strong><br>
-  <span>{{empreendimento.endereco}} ,{{empreendimento?.complemento}}</span><br>
+  <span>{{empreendimento?.endereco}} ,{{empreendimento?.complemento}}</span><br>
   <span>Bairro : {{empreendimento?.bairro}}</span>
 
   <router-outlet></router-outlet>

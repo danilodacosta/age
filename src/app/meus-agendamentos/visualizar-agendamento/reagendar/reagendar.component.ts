@@ -1,9 +1,12 @@
+import { ActivatedRoute } from '@angular/router';
+import { AgendamentoService } from './../../../agendamento/agendamento.service';
 import { Data } from '../../../agendamento/data-horario/data-horario.model';
 import { DateFormatPipe } from '../../../shared/DateFormatPipe.pipe';
 import { DadosConsultaAgendamento } from 'src/app/agendamento/agendamento.model';
 import { DataHorarioService } from '../../../agendamento/data-horario/data-horario.service';
 
 import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -17,19 +20,21 @@ export class ReagendarComponent implements OnInit {
   public datasConsulta = '';
   public dataSelecionada: any;
   public horarios: Data;
-  public datasDisponiveis: Array<Data>;
+  public datasDisponiveis: Array<Data> = [];
   public horariosDisponiveis: Array<any>;
   public statusConsulta: number;
   consultandoHorarios = false;
 
-
   constructor(
 
-    private dateFomartPipe: DateFormatPipe, private dataHorarioService: DataHorarioService) { }
+    private dateFomartPipe: DateFormatPipe,
+    private dataHorarioService: DataHorarioService,
+    private agendamentoService: AgendamentoService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.consultaDataDisponiveis();
-  }
+    this.consultaDadosAgendamento();
+   }
 
   onChangeData(dataEscolhida: HTMLInputElement) {
     this.dataSelecionada = (dataEscolhida as HTMLInputElement).value;
@@ -48,13 +53,13 @@ export class ReagendarComponent implements OnInit {
     );
   }
 
-  public consultaDataDisponiveis(): void {
+  public consultaDataDisponiveis(dadosConsultaAgendamento: DadosConsultaAgendamento): void {
     this.consultandoHorarios = true;
     this.datasDisponiveis = new Array<Data>();
     this.horarios = new Data();
      // tslint:disable-next-line:align
      this.dataHorarioService
-      .dataHorariosDisponiveis(this.getDadosConsultaReagendamento())
+      .dataHorariosDisponiveis(dadosConsultaAgendamento)
       .subscribe(retorno => {
         this.statusConsulta = retorno.Status;
         this.consultandoHorarios = false;
@@ -101,19 +106,32 @@ export class ReagendarComponent implements OnInit {
     this.dataSelecionada = this.datasDisponiveis[0].data;
     this.consultaHorarios();
   }
-  private getDadosConsultaReagendamento(): DadosConsultaAgendamento {
-    const dadosConsultaAgendamento: DadosConsultaAgendamento = new DadosConsultaAgendamento();
-    dadosConsultaAgendamento.Empreendimento = '1';
-    dadosConsultaAgendamento.Prestador = '3';
-    dadosConsultaAgendamento.DataInicial = this.dateFomartPipe.transform(new Date());
-    dadosConsultaAgendamento.DataFinal = this.dateFomartPipe.transform(
-      this.calcularProximosDias()
-    );
-    dadosConsultaAgendamento.TipoAgenda = '1';
-    dadosConsultaAgendamento.Periodo = ' ';
-    dadosConsultaAgendamento.QuantReg = '0';
-    dadosConsultaAgendamento.Hora = this.getHoraAtual();
-    dadosConsultaAgendamento.HoraPeriodo = ' ';
-    return dadosConsultaAgendamento;
-  }
+
+private consultaDadosAgendamento() {
+
+  const dadosConsultaAgendamento = new DadosConsultaAgendamento();
+
+  this.route.parent.paramMap.pipe(
+    switchMap(params => this.agendamentoService.agendamentoById(+params.get('id')))
+  )
+  .subscribe(
+     (agendamento) => {
+        dadosConsultaAgendamento.Empreendimento = agendamento[0].idEmpreendimento.toString();
+        dadosConsultaAgendamento.Prestador = agendamento[0].idPrestador.toString();
+        dadosConsultaAgendamento.DataInicial = this.dateFomartPipe.transform(new Date());
+        dadosConsultaAgendamento.DataFinal = this.dateFomartPipe.transform(
+        this.calcularProximosDias()
+      );
+        dadosConsultaAgendamento.TipoAgenda = '1';
+        dadosConsultaAgendamento.Periodo = ' ';
+        dadosConsultaAgendamento.QuantReg = '0';
+        dadosConsultaAgendamento.Hora = this.getHoraAtual();
+        dadosConsultaAgendamento.HoraPeriodo = ' ';
+
+        this.consultaDataDisponiveis(dadosConsultaAgendamento);
+
+     },
+     (error) => console.log('error ' + error)
+  );
+}
 }

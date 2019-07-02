@@ -13,6 +13,8 @@ export class DataHorarioService {
 
   public dataHorariosDisponiveis(dadosAgendamentoConsulta: DadosConsultaAgendamento) {
 
+console.log(`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(dadosAgendamentoConsulta)}`)
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',

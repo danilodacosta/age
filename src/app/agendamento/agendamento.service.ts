@@ -49,6 +49,7 @@ export class AgendamentoService {
   }
 
   agendamentoById(id: number) {
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
@@ -60,6 +61,10 @@ export class AgendamentoService {
       map(resposta => JSON.parse(resposta.toString()).classe),
       catchError(ErrorHandler.handleError)
     );
+  }
+
+  cancelar() {
+
   }
 
 }

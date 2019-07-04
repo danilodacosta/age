@@ -23,7 +23,8 @@ export class AgendamentoService {
     };
 
     return this.http.post<Agendamento>
-    (`${AGE_API}/AgendamentoConsulta/Adicionar?Json=${JSON.stringify(agendamento)}` , httpOptions)
+    // ?Json=${JSON.stringify(agendamento)}`
+    (`${AGE_API}/Agendamento/Agendar` , agendamento, httpOptions)
       .pipe(
         map(resposta => {
           return JSON.parse(JSON.stringify(resposta));
@@ -41,7 +42,7 @@ export class AgendamentoService {
         Expires: '0'
       })
     };
-
+    console.log(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentos()}`);
     return this.http.get(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentos()}`, httpOptions).pipe(
       map(resposta => JSON.parse(resposta.toString()).classe),
       catchError(ErrorHandler.handleError)

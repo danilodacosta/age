@@ -1,5 +1,16 @@
 <br>
-<h5>Reagendamento</h5>
+  <div class="container">
+
+  <div class="float-left">
+    <h6>Detalhes do Agendamento</h6>
+  </div>
+<div class="float-right">
+  <a [routerLink]="['/meus-agendamentos']" class="button light rounded">
+    <span class="caption"><< Voltar</span>
+  </a>
+  </div>
+
+</div>
 
 <div class="remark">
   <div class="divisor">
@@ -24,11 +35,7 @@
   <span>Bairro : {{empreendimento?.bairro}}</span>
 
   <router-outlet></router-outlet>
-
 </div>
 
-<button [routerLink]="['/meus-agendamentos']" class="image-button success rounded">
-  <span class="mif-arrow-left icon"></span>
-  <span class="caption">Voltar</span>
-</button>
+
 

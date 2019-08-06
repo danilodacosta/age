@@ -1,3 +1,21 @@
+.action-button, .button, .flat-button {
+  background-color: #e4e4e400;
+}
+
+.action-button[_ngcontent-cek-c2], .button[_ngcontent-cek-c2], .flat-button[_ngcontent-cek-c2] {
+  border-radius: 50%;
+  background-color: rgba(0,0,0,.1);
+}
+
+
+div.active-container {
+  button.active-toggle {
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.1);
+  }  
+}
+
+
 div {
   p {
     margin-bottom: -10px;
@@ -51,8 +69,14 @@ div.box {
 }
 
 div.agendamento-detalhe {
+
+span {
+  font-size: 12px;
+  font-weight: bold;
+}
+
   p {
-    font-size: 19px;
+    font-size: 16px;
     margin-top: 5px;
     margin-bottom: -5px;
     font-weight: bold;
@@ -62,6 +86,9 @@ div.agendamento-detalhe {
     margin-top: -12px;
   }
 
+  span.especialidade {
+    color:#607d8b
+  }
   span.detail-hour {
     margin-left: 10px;
   }

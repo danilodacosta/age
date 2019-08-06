@@ -6,24 +6,25 @@
         <span class="mif-more-vert mif-3x"></span>
       </button>
       <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-        <li><a [routerLink]="['/meus-agendamentos' , item?.id]" >Visualizar</a></li>
-        <li><a [routerLink]="['/meus-agendamentos/'+ item?.id + '/reagendar']">Reagendar</a></li>
-        <li><a (click)="cancelar(item)">Cancelar</a></li>
+        <li><a [routerLink]="['/meus-agendamentos' , item?.Id]" >Visualizar</a></li>
+        <li><a [routerLink]="['/meus-agendamentos/'+ item?.Id + '/reagendar']">Reagendar</a></li>
+        <li><a (click)="dialogCancelar(item)">Cancelar</a></li>
       </ul>
     </div>
 
     <div class="row">
       <div class="box">
-        <span>{{item?.dataAgendada | slice:8:10}}</span>
-        <span class="detail-mes"> {{item?.dataAgendada | mesFormat}}</span>
-        <span class="detail-hour">{{item?.horaInicial | slice:0:5}}</span>
+        <span>{{item?.DataAgendada | slice:0:2}}</span>
+        <span class="detail-mes"> {{item?.DataAgendada | mesFormat}}</span>
+        <span class="detail-hour">{{item?.HoraInicial | slice:0:5}}</span>
       </div>
 
       <div class=agendamento-detalhe>
-        <p>{{item?.tratamento}} {{item?.nome}}</p>
-        <span>{{item?.tipoEspecialidade}}</span>
+        <p>{{item?.Tratamento}} {{item?.NomePrestador}}</p>
+        <span>Especialidade: {{item?.TipoEspecialidade}}</span><br>        
         <hr>
-        <span class="status tally success">Agendado</span>
+        <span class="status tally success" style="margin-right: 10px;">{{item?.NomeConvenio}}</span>
+        <span class="status tally primary">Agendado</span>
       </div>
     </div>
   </div>

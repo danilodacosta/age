@@ -13,7 +13,7 @@ export class DataHorarioService {
 
   public dataHorariosDisponiveis(dadosAgendamentoConsulta: DadosConsultaAgendamento) {
 
-console.log(`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(dadosAgendamentoConsulta)}`)
+console.log(`${AGE_API}/Agendamento/HorarioDisponivel?Json=${JSON.stringify(dadosAgendamentoConsulta)}`);
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -23,8 +23,8 @@ console.log(`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(dadosA
       })
     };
 
-    return (this.http.get<Data[]>
-      (`${AGE_API}/HorarioDisponivel/Consultar?Json=${JSON.stringify(dadosAgendamentoConsulta)}`, httpOptions)
+return (this.http.post<Data[]>
+  (`${AGE_API}/Agendamento/HorarioDisponivel?Json=${JSON.stringify(dadosAgendamentoConsulta)}`, httpOptions)
         .pipe(
           map(resposta => {
             return JSON.parse(JSON.stringify(resposta));

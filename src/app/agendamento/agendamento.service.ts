@@ -24,7 +24,7 @@ export class AgendamentoService {
 
     return this.http.post<Agendamento>
     // ?Json=${JSON.stringify(agendamento)}`
-    (`${AGE_API}/Agendamento/Agendar` , agendamento, httpOptions)
+    (`${AGE_API}/Agendamento/Agendar?Json=${JSON.stringify(agendamento)}` , httpOptions)
       .pipe(
         map(resposta => {
           return JSON.parse(JSON.stringify(resposta));
@@ -33,7 +33,9 @@ export class AgendamentoService {
       );
   }
 
-  consultarAgendamento() {
+  consultarAgendamento(idCliente: number) {
+
+    const cliente = {cliente: idCliente};
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -42,15 +44,18 @@ export class AgendamentoService {
         Expires: '0'
       })
     };
-    console.log(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentos()}`);
-    return this.http.get(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentos()}`, httpOptions).pipe(
-      map(resposta => JSON.parse(resposta.toString()).classe),
+    return this.http.get(`${AGE_API}/Agendamento/ClienteConsultaAgenda?Json=${JSON.stringify(cliente)}`, httpOptions).pipe(
+      map((resposta: any) => {
+        return JSON.parse(JSON.stringify(resposta.Classe.ClienteAgendamentos));
+      }),
       catchError(ErrorHandler.handleError)
     );
   }
 
   agendamentoById(id: number) {
 
+    const agendamento = {idAgenda: id};
+
     const httpOptions = {
       headers: new HttpHeaders({
         'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
@@ -58,14 +63,56 @@ export class AgendamentoService {
         Expires: '0'
       })
     };
-    return this.http.get<any>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentoPorId(id)}`, httpOptions).pipe(
-      map(resposta => JSON.parse(resposta.toString()).classe),
+
+   // return this.http.get<any>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarAgendamentoPorId(id)}`, httpOptions).pipe(
+    return this.http.get(`${AGE_API}/Agendamento/ClienteConsultaAgendaById?Json=${JSON.stringify(agendamento)}`, httpOptions).pipe(
+      map((resposta: any) => {
+        return JSON.parse(JSON.stringify(resposta.Classe.ClienteAgendamentos));
+      }),
       catchError(ErrorHandler.handleError)
     );
   }
 
-  cancelar() {
+  cancelar(agendamento: any) {
 
+    const dadosCancelamento = {
+      IdAgenda: agendamento.Id,
+      Empreendimento: agendamento.IdEmpreendimento,
+      Prestador: agendamento.IdPrestador,
+      Cliente: agendamento.IdCliente
+    };
+
+    const json = JSON.stringify(dadosCancelamento);
+
+    return this.http.post<any>(`${AGE_API}/Agendamento/Cancelar?Json=${json}`, null).pipe(
+      map((resposta: any) => {
+        return resposta;
+      }),
+      catchError(ErrorHandler.handleError)
+    );
   }
+
+  public reagendar(dadosReagendamento: any) {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Cache-Control': 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0',
+        Pragma: 'no-cache',
+        Expires: '0'
+      })
+    };
+
+    return this.http.post<Agendamento>
+    // ?Json=${JSON.stringify(agendamento)}`
+    (`${AGE_API}/Agendamento/Reagendar?Json=${JSON.stringify(dadosReagendamento)}` , httpOptions)
+      .pipe(
+        map(resposta => {
+          return JSON.parse(JSON.stringify(resposta));
+        }),
+        catchError(ErrorHandler.handleError)
+      );
+  }
+
+
 
 }

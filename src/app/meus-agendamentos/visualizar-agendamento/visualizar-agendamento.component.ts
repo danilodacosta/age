@@ -36,7 +36,7 @@ export class VisualizarAgendamentoComponent implements OnInit {
   }
 
   private bucarPrestador() {
-    this.prestadorService.prestadorAndEspecialidade(this.agendamento.idPrestador)
+    this.prestadorService.prestadorAndEspecialidade(this.agendamento.IdPrestador)
     .subscribe((response) => {
       this.prestador = response[0];
       this.buscarEmpreendimento();
@@ -44,7 +44,7 @@ export class VisualizarAgendamentoComponent implements OnInit {
   }
 
   private buscarEmpreendimento() {
-    this.empreendimentoService.empreendimentoById(this.agendamento.idEmpreendimento)
+    this.empreendimentoService.empreendimentoById(this.agendamento.IdEmpreendimento)
     .subscribe((response) => {
       this.empreendimento = response[0];
     });

@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MesFormatPipe implements PipeTransform {
   transform(value: string) {
 
-    const data = value.slice(5, 7);
+    const data = value.slice(3, 5);
     let mes = '';
 
     switch (data) {

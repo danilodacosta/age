@@ -1,13 +1,15 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AgendamentoService } from './../../../agendamento/agendamento.service';
 import { Data } from '../../../agendamento/data-horario/data-horario.model';
 import { DateFormatPipe } from '../../../shared/DateFormatPipe.pipe';
-import { DadosConsultaAgendamento } from 'src/app/agendamento/agendamento.model';
+import { DadosConsultaAgendamento, Agendamento } from 'src/app/agendamento/agendamento.model';
 import { DataHorarioService } from '../../../agendamento/data-horario/data-horario.service';
 
 import { Component, OnInit } from '@angular/core';
 import { switchMap } from 'rxjs/operators';
 
+import Swal from 'sweetalert2';
+declare var Metro: any;
 
 @Component({
   selector: 'app-reagendar',
@@ -25,12 +27,15 @@ export class ReagendarComponent implements OnInit {
   public statusConsulta: number;
   consultandoHorarios = false;
 
+  public dadosConsultaAgendamento = new DadosConsultaAgendamento();
+
   constructor(
 
     private dateFomartPipe: DateFormatPipe,
     private dataHorarioService: DataHorarioService,
     private agendamentoService: AgendamentoService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     this.consultaDadosAgendamento();
@@ -45,6 +50,7 @@ export class ReagendarComponent implements OnInit {
     const datahora: any = new Object();
     datahora.data = this.dataSelecionada;
     datahora.hora = horarioSelecionado;
+    this.dialogReagendamento(datahora);
   }
 
   private consultaHorarios(): void {
@@ -109,29 +115,91 @@ export class ReagendarComponent implements OnInit {
 
 private consultaDadosAgendamento() {
 
-  const dadosConsultaAgendamento = new DadosConsultaAgendamento();
+  this.dadosConsultaAgendamento = new DadosConsultaAgendamento();
 
   this.route.parent.paramMap.pipe(
     switchMap(params => this.agendamentoService.agendamentoById(+params.get('id')))
   )
   .subscribe(
      (agendamento) => {
-        dadosConsultaAgendamento.Empreendimento = agendamento[0].idEmpreendimento.toString();
-        dadosConsultaAgendamento.Prestador = agendamento[0].idPrestador.toString();
-        dadosConsultaAgendamento.DataInicial = this.dateFomartPipe.transform(new Date());
-        dadosConsultaAgendamento.DataFinal = this.dateFomartPipe.transform(
-        this.calcularProximosDias()
+       console.log(agendamento)
+       this.dadosConsultaAgendamento.id = agendamento[0].Id;
+       this.dadosConsultaAgendamento.idConvenio = agendamento[0].IdConvenio;
+       this.dadosConsultaAgendamento.Empreendimento = agendamento[0].IdEmpreendimento.toString();
+       this.dadosConsultaAgendamento.Prestador = agendamento[0].IdPrestador.toString();
+       this.dadosConsultaAgendamento.DataInicial = this.dateFomartPipe.transform(new Date());
+       this.dadosConsultaAgendamento.DataFinal = this.dateFomartPipe.transform(
+       this.calcularProximosDias()
       );
-        dadosConsultaAgendamento.TipoAgenda = '1';
-        dadosConsultaAgendamento.Periodo = ' ';
-        dadosConsultaAgendamento.QuantReg = '0';
-        dadosConsultaAgendamento.Hora = this.getHoraAtual();
-        dadosConsultaAgendamento.HoraPeriodo = ' ';
-
-        this.consultaDataDisponiveis(dadosConsultaAgendamento);
+       this.dadosConsultaAgendamento.DataAgendada = agendamento[0].DataAgendada;
+       this.dadosConsultaAgendamento.TipoAgenda = '1';
+       this.dadosConsultaAgendamento.Periodo = ' ';
+       this.dadosConsultaAgendamento.QuantReg = '0';
+       this.dadosConsultaAgendamento.Hora = this.getHoraAtual();
+       this.dadosConsultaAgendamento.HoraPeriodo = ' ';
+       this.dadosConsultaAgendamento.HoraInicial = agendamento[0].HoraInicial;
+       this.consultaDataDisponiveis(this.dadosConsultaAgendamento);
 
      },
      (error) => console.log('error ' + error)
   );
 }
+
+
+private dialogReagendamento(datahora: any): void {
+
+  const data = this.convertDataPtBr(datahora.data);
+
+  Metro.dialog.create({
+    title: 'Confirmar Reagendamento ?',
+    clsDialog: 'primary',
+    content: `Deseja confirmar o seu reagendamento para a data e horario escolhido  ?
+    <hr>
+    <span class='mif-calendar'></span><span> : ${data} </span><br>
+    <span class="mif-alarm"></span><span> : ${datahora.hora}</span>`,
+    actions: [
+      {
+        caption: 'Reagendar',
+        cls: 'shadow-2 js-dialog-close primary',
+        onclick: () => {
+          this.reagendar(datahora);
+        }
+      },
+      {
+        caption: 'Cancelar',
+        cls: 'shadow-2 alert js-dialog-close'
+      }
+    ]
+  });
+}
+
+private convertDataPtBr(value: string): string {
+  const ano = value.substring(6, 10);
+  const mes = value.substring(3, 5);
+  const dia = value.substring(0, 2);
+  return `${dia}/${mes}/${ano}`;
+ }
+
+
+private reagendar(datahoraReagendamento: any): any {
+    const dadosReagendamento = {
+    IdAgenda: this.dadosConsultaAgendamento.id,
+    Empreendimento: this.dadosConsultaAgendamento.Empreendimento,
+    Prestador: this.dadosConsultaAgendamento.Prestador,
+    Cliente: '42',
+    Convenio: this.dadosConsultaAgendamento.idConvenio,
+    Data: datahoraReagendamento.data,
+    Hora: datahoraReagendamento.hora,
+    // tslint:disable-next-line: max-line-length
+    Observacao: `Consulta Reagendada do Dia ${this.dadosConsultaAgendamento.DataAgendada} as ${this.dadosConsultaAgendamento.HoraInicial}hs para o Dia ${datahoraReagendamento.data} as ${datahoraReagendamento.hora}hs`
+ };
+
+ console.log(dadosReagendamento);
+
+    this.agendamentoService.reagendar(dadosReagendamento).subscribe((retorno: any) => {
+   //   console.log(retorno)
+      Swal.fire('', `Seu Reagendamento foi realizado com sucesso!`, 'success');
+      this.router.navigateByUrl('meus-agendamentos', {skipLocationChange: true});
+  });
+  }
 }

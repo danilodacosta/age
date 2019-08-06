@@ -9,10 +9,12 @@
         <li>
             <a href="#" class="dropdown-toggle"><span class="mif-calendar icon"></span>Agendamento</a>
             <ul class="d-menu" data-role="dropdown">
-                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Novo</a></li>
+                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Agendar</a></li>
                 <li class="divider bg-lightGray"></li>
                 <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Meus Agendamentos</a></li>
-                <li class="divider bg-lightGray"></li>
+                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Reagendamento</a></li>
+                <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Cancelamento</a></li>
+              
             </ul>
         </li>
     </ul>

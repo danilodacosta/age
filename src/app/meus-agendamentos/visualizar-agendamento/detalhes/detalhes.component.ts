@@ -30,10 +30,10 @@ export class DetalhesComponent implements OnInit {
        (agendamento) => {
         this.datelheAgendamento = agendamento[0];
         this.dadosAgendamento = `
-          ${this.datelheAgendamento.dataAgendada.slice(8, 10)} de
+          ${this.datelheAgendamento.DataAgendada.slice(0, 2)} de
           ${this.mesText()} de
-          ${this.datelheAgendamento.dataAgendada.slice(0, 4)} às
-          ${this.datelheAgendamento.horaInicial.slice(0, 5)}hs`;
+          ${this.datelheAgendamento.DataAgendada.slice(6, 10)} às
+          ${this.datelheAgendamento.HoraInicial.slice(0, 5)}hs`;
        },
        (error) => console.log('error ' + error)
     );
@@ -41,7 +41,7 @@ export class DetalhesComponent implements OnInit {
 
   private mesText(): string {
 
-    const data = this.datelheAgendamento.dataAgendada.slice(5, 7);
+    const data = this.datelheAgendamento.DataAgendada.slice(3, 5);
 
     let mes = '';
     switch (data) {

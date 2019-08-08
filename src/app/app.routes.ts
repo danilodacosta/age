@@ -1,3 +1,4 @@
+import { LoginComponent } from './security/login/login.component';
 import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
 
 import { DetalhesComponent } from './meus-agendamentos/visualizar-agendamento/detalhes/detalhes.component';
@@ -12,6 +13,8 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
 
 export const ROUTES: Routes = [
   { path: '' , component: HomeComponent },
+  { path: 'login/:to', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'empreendimentos' , component: EmpreendimentoComponent },
   { path: 'empreendimentos/:id', component: AgendamentoComponent},
   { path: 'meus-agendamentos', component: MeusAgendamentosComponent},

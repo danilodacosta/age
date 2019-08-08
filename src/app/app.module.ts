@@ -1,3 +1,4 @@
+import { LoginService } from './security/login/shared/login.service';
 import { MesFormatPipe } from './shared/MesFormatPipe.pipe';
 import { DateFormatStringPipe } from './shared/DataFormatPipeString.pipe';
 import { AgendamentoService } from './agendamento/agendamento.service';
@@ -27,6 +28,7 @@ import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos
 import { DetalhesComponent } from './meus-agendamentos/visualizar-agendamento/detalhes/detalhes.component';
 import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
 import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-agendamento/visualizar-agendamento.component';
+import { LoginComponent } from './security/login/login.component';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
     MeusAgendamentosComponent,
     DetalhesComponent,
     ReagendarComponent,
-    VisualizarAgendamentoComponent
+    VisualizarAgendamentoComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,
@@ -60,6 +63,7 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
               PrestadorService,
               ConvenioService,
               AgendamentoService,
+              LoginService,
               DateFormatPipe,
               DateFormatStringPipe, MesFormatPipe],
   bootstrap: [AppComponent]

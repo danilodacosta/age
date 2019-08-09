@@ -34,16 +34,16 @@
         <p class="login-box-msg">Por favor, efetue o login para continuar</p>
         <hr class="thin mt-4 mb-4 bg-white">
         <div class="form-group">
-          <input type="text" data-role="input" data-prepend="<span class='mif-user'>"
+          <input formControlName="username" type="text" data-role="input" data-prepend="<span class='mif-user'>"
             placeholder="usuário">
         </div>
         <div class="form-group">
-          <input type="password" data-role="input" data-prepend="<span class='mif-key'>"
+          <input formControlName="password" type="password" data-role="input" data-prepend="<span class='mif-key'>"
             placeholder="senha" data-validate="required minlength=6">
         </div>
         <div class="form-group mt-10">
-          <p class="float-left">Não tem uma conta? <a href="/">Crie uma!</a></p> 
-          <button class="button primary float-right">Entrar</button>
+          <p class="float-left">Não tem uma conta? <a href="/">Crie uma!</a></p>
+          <button (click)="login()" class="button primary float-right">Entrar</button>
         </div>
       </form>
     </div>

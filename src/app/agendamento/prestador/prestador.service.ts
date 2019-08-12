@@ -3,7 +3,6 @@ import { Query } from '../../querys';
 import { retry, catchError, map } from 'rxjs/operators';
 import { HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ErrorHandler } from '../../app.error-handler';
 import { AGE_API } from '../../app.api';
 
 
@@ -15,8 +14,7 @@ export class PrestadorService {
     return this.http.get<Prestador[]>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarPrestadoresPorEmpreendimentoEConvenio(idEmpreendimento, idConvenio)}`)
     .pipe (
       map(resposta => JSON.parse(resposta.toString()).classe),
-      retry(3),
-      catchError(ErrorHandler.handleError)
+      retry(3)
     );
   }
 
@@ -24,8 +22,7 @@ export class PrestadorService {
     return this.http.get<Prestador>(`${AGE_API}/Prestadores/Consultar/${idPrestador}`)
     .pipe (
       map(resposta => JSON.parse(resposta.toString()).classe),
-      retry(3),
-      catchError(ErrorHandler.handleError)
+      retry(3)
     );
   }
 
@@ -34,8 +31,7 @@ export class PrestadorService {
     return this.http.get<Prestador>(`${AGE_API}/GenericQuery/Executar?Query=${Query.consultarPrestadoresAndEspecialidade(idPrestador)}`)
     .pipe (
       map(resposta => JSON.parse(resposta.toString()).classe),
-      retry(3),
-      catchError(ErrorHandler.handleError)
+      retry(3)
     );
   }
 }

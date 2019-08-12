@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 import { Router, NavigationEnd } from "@angular/router";
 
 import { Observable } from "rxjs";
-import { tap, filter } from "rxjs/operators";
+import { map, filter } from "rxjs/operators";
 
 @Injectable()
 export class LoginService {
@@ -23,17 +23,33 @@ export class LoginService {
   }
 
   login(username: string, password: string): Observable<User> {
-      const httpOptions = {
+    const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/x-www-form-urlencoded",
-        "'Access-Control-Allow-Origin" : '*'
+        "'Access-Control-Allow-Origin": "*"
       })
     };
     const body = `username=${username}&password=${password}&grant_type=password`;
-//https://cors-anywhere.herokuapp.com/
+
+    // https://cors-anywhere.herokuapp.com/
     return this.httpClient
-      .post<User>(`http://www.mscfilho.net/api/v1/Token`, body, httpOptions)
-      .pipe(tap(token => console.log(token)));
+      .post<User>(
+        `https://cors-anywhere.herokuapp.com/http://www.mscfilho.net/api/v1/Token`,
+        body,
+        httpOptions
+      )
+      .pipe(
+        map(token => {
+
+          const user = {
+            username,
+            password,
+            access_token : token.access_token
+           };
+
+          return this.user = user;
+        })
+      );
   }
   /*
   const headers = new Headers();

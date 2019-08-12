@@ -1,5 +1,4 @@
 import { Query } from './../querys';
-import { ErrorHandler } from './../app.error-handler';
 import { AGE_API } from './../app.api';
 import { Agendamento } from './agendamento.model';
 import { catchError, map } from 'rxjs/operators';
@@ -28,8 +27,7 @@ export class AgendamentoService {
       .pipe(
         map(resposta => {
           return JSON.parse(JSON.stringify(resposta));
-        }),
-        catchError(ErrorHandler.handleError)
+        })
       );
   }
 
@@ -47,8 +45,7 @@ export class AgendamentoService {
     return this.http.get(`${AGE_API}/Agendamento/ClienteConsultaAgenda?Json=${JSON.stringify(cliente)}`, httpOptions).pipe(
       map((resposta: any) => {
         return JSON.parse(JSON.stringify(resposta.Classe.ClienteAgendamentos));
-      }),
-      catchError(ErrorHandler.handleError)
+      })
     );
   }
 
@@ -68,8 +65,7 @@ export class AgendamentoService {
     return this.http.get(`${AGE_API}/Agendamento/ClienteConsultaAgendaById?Json=${JSON.stringify(agendamento)}`, httpOptions).pipe(
       map((resposta: any) => {
         return JSON.parse(JSON.stringify(resposta.Classe.ClienteAgendamentos));
-      }),
-      catchError(ErrorHandler.handleError)
+      })
     );
   }
 
@@ -87,8 +83,7 @@ export class AgendamentoService {
     return this.http.post<any>(`${AGE_API}/Agendamento/Cancelar?Json=${json}`, null).pipe(
       map((resposta: any) => {
         return resposta;
-      }),
-      catchError(ErrorHandler.handleError)
+      })
     );
   }
 
@@ -108,8 +103,7 @@ export class AgendamentoService {
       .pipe(
         map(resposta => {
           return JSON.parse(JSON.stringify(resposta));
-        }),
-        catchError(ErrorHandler.handleError)
+        })
       );
   }
 

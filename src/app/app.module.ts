@@ -1,3 +1,5 @@
+import { ApplicationErrorHandler } from './app.error-handler';
+import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginService } from './security/login/shared/login.service';
 import { MesFormatPipe } from './shared/MesFormatPipe.pipe';
 import { DateFormatStringPipe } from './shared/DataFormatPipeString.pipe';
@@ -7,7 +9,7 @@ import { ConvenioService } from './agendamento/convenio/convenio.service';
 import { PrestadorService } from './agendamento/prestador/prestador.service';
 import { EmpreendimentoService } from './empreendimento/empreendimento.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -65,7 +67,9 @@ import { LoginComponent } from './security/login/login.component';
               AgendamentoService,
               LoginService,
               DateFormatPipe,
-              DateFormatStringPipe, MesFormatPipe],
+              DateFormatStringPipe, MesFormatPipe,
+              {provide: HTTP_INTERCEPTORS,  useClass: AuthInterceptor, multi: true},
+              {provide: ErrorHandler, useClass: ApplicationErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,5 @@
 import { Data } from './data-horario.model';
 import { DadosConsultaAgendamento } from './../agendamento.model';
-import { ErrorHandler } from './../../app.error-handler';
 import { AGE_API } from './../../app.api';
 import { retry, catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -29,8 +28,7 @@ return (this.http.post<Data[]>
           map(resposta => {
             return JSON.parse(JSON.stringify(resposta));
           }),
-          retry(3),
-          catchError(ErrorHandler.handleError)
+          retry(3)
         )
     );
   }

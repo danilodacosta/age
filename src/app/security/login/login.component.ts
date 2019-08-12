@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = this.fb.group({
-      username: this.fb.control('', [Validators.required, Validators.email]),
+      username: this.fb.control('', [Validators.required]),
       password: this.fb.control('', [Validators.required])
     });
 
@@ -31,10 +31,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService
-      .login(this.loginForm.value.email, this.loginForm.value.password)
-      .subscribe(user => console.log(`Bem vindo(a), ${user.username}`), // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
+      .login(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe(user => console.log(`Bem vindo(a)` , user.username), // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
               // httpErrorResponse
-                 error => console.log(`error : ${error.error.message} `), // this.notificationService.notify(`${error.error.message}`),
+                 error => console.log(`error : ` , error), // this.notificationService.notify(`${error.error.message}`),
                  () => {
                   this.router.navigate([atob(this.navigateTo)]);
                  }

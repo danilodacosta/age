@@ -3,7 +3,6 @@ import { retry, catchError, map } from 'rxjs/operators';
 import { Empreendimento } from './empreendimento.model';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ErrorHandler } from './../app.error-handler';
 import { AGE_API } from '../app.api';
 
 @Injectable()
@@ -15,8 +14,7 @@ export class EmpreendimentoService {
       .get<Empreendimento[]>(`${AGE_API}/Empreendimentos/Consultar`)
       .pipe(
         map(resposta => JSON.parse(resposta.toString()).classe.empreendimentos),
-        retry(3),
-        catchError(ErrorHandler.handleError)
+        retry(3)
       );
   }
 
@@ -25,8 +23,7 @@ export class EmpreendimentoService {
       .get<Empreendimento>(`${AGE_API}/Empreendimentos/Consultar/${id}`)
       .pipe(
         map(resposta => JSON.parse(resposta.toString()).classe.empreendimentos),
-        retry(3),
-        catchError(ErrorHandler.handleError)
+        retry(3)
       );
   }
 
@@ -39,8 +36,7 @@ export class EmpreendimentoService {
       )
       .pipe(
         map(resposta => JSON.parse(resposta.toString()).classe),
-        retry(3),
-        catchError(ErrorHandler.handleError)
+        retry(3)
       );
   }
 }

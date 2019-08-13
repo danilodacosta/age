@@ -42,8 +42,9 @@
             placeholder="senha" data-validate="required minlength=6">
         </div>
         <div class="form-group mt-10">
+          <button *ngIf="!validandoLogin" (click)="login()" class="button primary float-right">Entrar</button>
           <p class="float-left">Não tem uma conta? <a href="/">Crie uma!</a></p>
-          <button (click)="login()" class="button primary float-right">Entrar</button>
+          <div  *ngIf="validandoLogin" data-role="activity" class="float-right loading" data-type="simple" data-style="color"></div>
         </div>
       </form>
     </div>

@@ -1,7 +1,31 @@
-<div class="remark success shadow-1">
-  <h3>Bem Vindo ao AGE !</h3>
-  <p>Realize <a [routerLink]="['/empreendimentos']">agendamentos</a> e seu pré-atendimento com alguns cliques em seu
-    aplicativo.</p>
-  <br>
-  <a [routerLink]="['/empreendimentos']" class="button success outline drop-shadow">Iniciar</a>
+<div class="container">
+
+  <div class="remark shadow-1">
+    <h3>Bem Vindo ao AGE !</h3>
+    <p>Realize <a [routerLink]="['/empreendimentos']">agendamentos</a> e seu pré-atendimento com alguns cliques em seu
+      aplicativo.</p>
+    <br>
+    <div class="tiles-menu">
+      <div class="tiles-grid">
+
+        <div [routerLink]="['/empreendimentos']" data-role="tile" class="bg-green tile-medium">
+          <span class="mif-add icon"></span>
+          <span class="branding-bar">Novo Agendamento</span>
+        </div>
+
+        <div [routerLink]="['/meus-agendamentos']" data-role="tile" class="tile-medium">
+          <span class="badge-top">10</span>
+          <span class="mif-calendar icon"></span>
+          <span class="branding-bar">Agendados</span>
+        </div>
+
+        <div data-role="tile" class="bg-pink tile-medium" data-role-tile="true">
+          <span class="mif-cart icon"></span>
+          <span class="branding-bar">Exemplo de item</span>
+          <span class="badge-top">10</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>

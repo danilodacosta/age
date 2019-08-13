@@ -57,7 +57,7 @@ import { LoginComponent } from './security/login/login.component';
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
-    RouterModule.forRoot(ROUTES,  {useHash: true, onSameUrlNavigation: 'reload'}),
+    RouterModule.forRoot(ROUTES),
     HttpClientModule,
   ],
   // { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },

@@ -1,10 +1,10 @@
-
-// import { NotificationService } from './../../shared/messages/notification.service';
 import { LoginService } from './shared/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
+
+declare var Metro: any;
 
 @Component({
   selector: 'app-login',
@@ -12,15 +12,18 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   loginForm: FormGroup;
   navigateTo: string;
+  validandoLogin = false;
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, private activatedRoute: ActivatedRoute, private router: Router
-    ) {}
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-
     this.loginForm = this.fb.group({
       username: this.fb.control('', [Validators.required]),
       password: this.fb.control('', [Validators.required])
@@ -30,14 +33,29 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.validandoLogin = true;
     this.loginService
       .login(this.loginForm.value.username, this.loginForm.value.password)
-      .subscribe(user => console.log(`Bem vindo(a)` , user.username), // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
-              // httpErrorResponse
-                 error => console.log(`error : ` , error), // this.notificationService.notify(`${error.error.message}`),
-                 () => {
-                  this.router.navigate([atob(this.navigateTo)]);
-                 }
-     );
+      .subscribe(
+        user => {
+          Metro.notify.create(`Bem vindo(a) ${user.username}`, 'Olá', {cls: 'secondary'});
+        }, // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
+        // httpErrorResponse
+        error => {
+          this.validandoLogin = false;
+          Metro.notify.create('Usuário e/ou senha inválidos.', 'Atenção', {cls: 'alert'});
+        }, // this.notificationService.notify(`${error.error.message}`),
+        () => {
+          this.validandoLogin = false;
+          const navigation = [atob(this.navigateTo)].toString();
+          if (navigation === 'undefined') {
+              this.router.navigate(['']);
+          } else {
+            this.router.navigate([`${navigation}`]);
+            console.log(navigation);
+          }
+         // this.router.navigate([atob(this.navigateTo)]);
+        }
+      );
   }
 }

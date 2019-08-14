@@ -46,14 +46,14 @@
   </div>
   <ul class="sidebar-menu">
       <li class="group-title">Menu</li>
-      <li><a (click)="toogleMenu()" [routerLink]="['/']"><span class="mif-home icon"></span>Home</a></li>
+      <li><a [routerLink]="['/']"><span class="mif-home icon"></span>Home</a></li>
       <li class="divider"></li>
       <li>
         <a href="#" class="dropdown-toggle"><span class="mif-calendar icon"></span>Agendamento</a>
         <ul class="d-menu" data-role="dropdown">
-          <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Agendar</a></li>
+          <li><a routerLinkActive="active" [routerLink]="['/empreendimentos']">Agendar</a></li>
           <li class="divider bg-lightGray"></li>
-          <li><a data-role="hint" data-hint-position="right" data-hint-text="Aqui você pode ver os detalhes do seu agendamento, reagendar e cancelar." routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Meus
+          <li><a data-role="hint" data-hint-position="right" data-hint-text="Aqui você pode ver os detalhes do seu agendamento, reagendar e cancelar." routerLinkActive="active" [routerLink]="['/meus-agendamentos']">Meus
               Agendamentos</a></li>
         </ul>
       </li>

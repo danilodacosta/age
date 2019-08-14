@@ -45,7 +45,7 @@ div.box {
   color: white;
   padding: 10px;
   margin: 10px;
-  margin-left: 0px;
+  margin-left: 10px;
   border-radius: .25rem;
   text-shadow: 0px 1px #111010;
 
@@ -109,4 +109,11 @@ div {
 
 hr {
   background-color: #e5e5e5;
+}
+
+div.remark {
+  p {
+    text-align: center;
+    font-weight: bold;
+  }
 }

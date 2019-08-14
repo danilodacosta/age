@@ -1,5 +1,17 @@
-<app-header (menuAberto)="toogleMenu($event)"></app-header>
-<!--<div class="layout-mask" *ngIf="openMenu"></div>-->
-<div class="container" [class.openMenu]="openMenu">
- <router-outlet></router-outlet>
+<app-header></app-header>
+
+<!--body -->
+<div class="shifted-content h-100 p-ab">
+  <div class="app-bar pos-absolute bg-green z-1" data-role="appbar">
+    <button class="app-bar-item c-pointer" id="sidebar-toggle-3">
+      <span class="mif-menu fg-white"></span>
+    </button>
+  </div>
+
+  <div class="h-100 p-4">
+    <div class="container mb-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
+<!--<div class="layout-mask" *ngIf="openMenu"></div>-->

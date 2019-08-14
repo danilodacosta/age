@@ -1,4 +1,4 @@
-<aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-2">
+<!--<aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-2">
   <div class="menu-header">
     <span class="title">AGE - Agendamento Eletronico</span>
   </div>
@@ -17,9 +17,50 @@
     </li>
   </ul>
 </aside>
+
 <div class="h-100 p-ab shadow-1">
   <span class="pos-absolute pos-top-left">AGE - Agendamento Eletronico</span>
   <button style="background: #fff;" class="button square pos-absolute pos-top-right" id="sidebar-toggle-2">
     <span (click)="toogleMenu()" id="item-menu" [class.mif-cross]="openMenu" class="mif-menu mif-4x"></span>
   </button>
 </div>
+<div class="shifted-content-2 h-100 p-ab">
+    <div class="appbar pos-absolute bg-red z-1" data-role="appbar">
+        <button class="app-bar-item c-pointer" id="sidebar-toggle-2">
+            <span class="mif-menu fg-white"></span>
+        </button>
+    </div>-->
+
+<aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle-3" id="sb3"
+  data-shift=".shifted-content">
+  <div class="sidebar-header bg-green">
+      <a href="/" class="fg-white sub-action"
+      onclick="Metro.sidebar.close('#sb3'); return false;">
+       <span class="mif-arrow-left mif-2x"></span>
+   </a>
+    <div class="avatar">
+      <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+    </div>
+    <span class="title fg-white">AGE - Agendamento Eletronico</span>
+    <span class="subtitle fg-white"> 2019 © MscFilho</span>
+  </div>
+  <ul class="sidebar-menu">
+      <li class="group-title">Menu</li>
+      <li><a (click)="toogleMenu()" [routerLink]="['/']"><span class="mif-home icon"></span>Home</a></li>
+      <li class="divider"></li>
+      <li>
+        <a href="#" class="dropdown-toggle"><span class="mif-calendar icon"></span>Agendamento</a>
+        <ul class="d-menu" data-role="dropdown">
+          <li><a routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/empreendimentos']">Agendar</a></li>
+          <li class="divider bg-lightGray"></li>
+          <li><a data-role="hint" data-hint-position="right" data-hint-text="Aqui você pode ver os detalhes do seu agendamento, reagendar e cancelar." routerLinkActive="active" (click)="toogleMenu()" [routerLink]="['/meus-agendamentos']">Meus
+              Agendamentos</a></li>
+        </ul>
+      </li>
+      <li class="group-title">Settings</li>
+      <li><a><span class="mif-cogs icon"></span>Preferences</a></li>
+      <li><a><span class="mif-user icon"></span>Profile</a></li>
+      <li class="divider"></li>
+      <li><a><span class="mif-exit icon"></span>Logout</a></li>
+    </ul>
+</aside>

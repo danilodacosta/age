@@ -34,7 +34,7 @@ export class LoginService {
     // https://cors-anywhere.herokuapp.com/
     return this.httpClient
       .post<User>(
-        `https://cors-anywhere.herokuapp.com/http://www.mscfilho.net/api/v1/Token`,
+        `https://cors-anywhere.herokuapp.com/http://www.mscfilho.net:8080/api/v1/Token`,
         body,
         httpOptions
       )

@@ -8,3 +8,46 @@ div.tiles-menu{
   border: 2px solid #eee;
   margin-bottom: 1rem;
 }
+
+
+// MEUS AGENDAMENTOS
+div.card-content {
+
+  div.avatar {
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+
+    img {
+       width: 80px;
+       height: 80px;
+       border-radius: 50%;
+    }
+  }
+  div.dados-prestador {
+    margin-top: -99px !important;
+    margin-left: 85px;
+    margin-bottom: 5px;
+  }
+}
+.divisor {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px #eee solid;
+
+  span.titulo-secao {
+    font-weight: bold;
+    color: green;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.26);
+}
+
+div {
+  button {
+    margin: 10px;
+  }
+}
+

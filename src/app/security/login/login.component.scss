@@ -2,7 +2,15 @@ div.loading {
   margin-top: -24px;
 }
 div {
-  input[type=text]{ 
+  input[type=text]{
     border-color : red !important;
    }
+}
+
+div.card-header {
+  background: #4bae2d;
+  color: white;
+  margin-top: -18px;
+  margin-bottom: -15px;
+
 }

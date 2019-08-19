@@ -33,6 +33,8 @@ import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/r
 import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-agendamento/visualizar-agendamento.component';
 import { LoginComponent } from './security/login/login.component';
 import { FormFieldErrorComponent } from './shared/components/form-field-error/form-field-error.component';
+import { CadastroComponent } from './security/cadastro/cadastro.component';
+import { AcessoComponent } from './security/acesso/acesso.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { FormFieldErrorComponent } from './shared/components/form-field-error/fo
     ReagendarComponent,
     VisualizarAgendamentoComponent,
     LoginComponent,
-    FormFieldErrorComponent
+    FormFieldErrorComponent,
+    CadastroComponent,
+    AcessoComponent
   ],
   imports: [
     FormsModule,

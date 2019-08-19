@@ -1,3 +1,4 @@
+import { AcessoComponent } from './security/acesso/acesso.component';
 import { LoggedInGuard } from './security/loggedin.guard';
 import { LoginComponent } from './security/login/login.component';
 import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
@@ -13,7 +14,8 @@ import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-a
 
 
 export const ROUTES: Routes = [
-  { path: '' , component: HomeComponent , canActivate: [LoggedInGuard] },
+  { path: '' , component: HomeComponent, canActivate: [LoggedInGuard]},
+  { path: 'acesso' , component: AcessoComponent},
   { path: 'login/:to', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'empreendimentos' , component: EmpreendimentoComponent },

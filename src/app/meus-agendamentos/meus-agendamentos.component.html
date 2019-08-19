@@ -1,40 +1,38 @@
-<br>
-<div class="remark primary">
-  <p>Esses são os seus agendametos, aqui você pode ver os detalhes, reagendar e cancelar. clicando em opções.</p>
-</div>
-<br>
 <div class="container">
-    <div class="row">
-      <div class="box-shadow cell-md-5 mr-2" *ngFor="let item of agendamentos">
-        <div style="float: right" class="pos-relative">
-          <button class="button square dropdown-toggle"><span class="mif-more-vert icon"></span> Opções</button>
-
-          <!--<span class="mif-more-vert mif-3x"></span>-->
-
-          <ul class="d-menu shadow-2 drop-left no-marker" data-role="dropdown" style="display: none;">
-            <li><a [routerLink]="['/meus-agendamentos' , item?.Id]">Visualizar</a></li>
-            <li><a [routerLink]="['/meus-agendamentos/'+ item?.Id + '/reagendar']">Reagendar</a></li>
-            <li><a (click)="dialogCancelar(item)">Cancelar</a></li>
-          </ul>
+  <h4 class="mb-7">Meus Agendamentos</h4>
+  <div class="row">
+    <div class="card box-shadow cell-lg-5 mt-3" *ngFor="let item of agendamentos">
+      <div class="card-header">
+        <span class="titulo-secao"> Informações do Agendamento</span>
+      </div>
+      <div class="card-content p-2">
+        <div class="avatar">
+          <!--<div *ngIf="!prestador?.uriFoto" data-role="activity" data-type="simple" data-style="color"></div>-->
+          <img src="http://www.mscfilho.net/Imagens/NIOBOT/Dr%20Jo%C3%A3o%20Evandro.jpg">
         </div>
-
-        <div class="row">
-          <div class="box">
-            <span>{{item?.DataAgendada | slice:0:2}}</span>
-            <span class="detail-mes"> {{item?.DataAgendada | mesFormat}}</span>
-            <span class="detail-hour">{{item?.HoraInicial | slice:0:5}}</span>
-          </div>
-
-          <div class=agendamento-detalhe>
-            <p>{{item?.Tratamento}} {{item?.NomePrestador}}</p>
-            <span>Especialidade: {{item?.TipoEspecialidade}}</span><br>
-            <hr>
-            <span class="status tally success" style="margin-right: 10px;">{{item?.NomeConvenio}}</span>
-            <span class="status tally primary">Agendado</span>
-          </div>
+        <div class="dados-prestador">
+          <p><strong>{{item?.Tratamento}} {{item?.NomePrestador}}</strong></p>
+          <span>Especialidade: {{item?.TipoEspecialidade}}</span>
         </div>
       </div>
-
+      <div class="card-content p-2">
+        <div class="divisor">
+          <span class="fg-green mif-calendar mif-2x"></span>
+          <span class="titulo-secao"> Data e hora do agendamento</span>
+        </div>
+        <strong style="font-size: 15px">{{item?.DataAgendada | slice:0:2}} de {{mesText(item?.DataAgendada| slice:3:5)}} de {{item?.DataAgendada | slice:6:10}} às {{item?.HoraInicial | slice:0:5}}hs </strong><br>
+        <div class="divisor">
+          <span class="fg-green mif-credit-card mif-2x"></span>
+          <span class="titulo-secao"> Convênio</span>
+        </div>
+        <strong class="status tally  mr-3">{{item?.NomeConvenio}}</strong>
+      </div>
+      <div class="card-content p-2">
+        <a [routerLink]="['/meus-agendamentos/'+ item?.Id + '/reagendar']"
+          class="button shadow-1 rounded success">Reagendar</a>
+        <button (click)="dialogCancelar(item)" class="button shadow-1 rounded warning">Cancelar</button>
+        <a [routerLink]="['/meus-agendamentos' , item?.Id]"
+          class="button shadow-1 rounded secondary">Detalhes</a>
+      </div>
     </div>
-
-</div>
+  </div>

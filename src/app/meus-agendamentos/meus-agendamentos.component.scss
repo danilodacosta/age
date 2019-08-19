@@ -1,119 +1,50 @@
-.action-button, .button, .flat-button {
-  background-color: #e4e4e400;
-}
+// MEUS AGENDAMENTOS
+div.card-content {
 
-.action-button[_ngcontent-cek-c2], .button[_ngcontent-cek-c2], .flat-button[_ngcontent-cek-c2] {
-  border-radius: 50%;
-  background-color: rgba(0,0,0,.1);
-}
+  div.avatar {
+    margin-right: 15px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 
-
-div.active-container {
-  button.active-toggle {
-    border-radius: 50%;
-    background-color: rgba(0,0,0,.1);
+    img {
+       width: 80px;
+       height: 80px;
+       border-radius: 50%;
+    }
+  }
+  div.dados-prestador {
+    margin-top: -99px !important;
+    margin-left: 85px;
+    margin-bottom: 5px;
   }
 }
-
-
-div {
-  p {
-    margin-bottom: -10px;
-    font-size: 13px;
-  }
-}
-
-div.box-shadow {
+.divisor {
+  margin-top: 20px;
   margin-bottom: 20px;
-}
+  border-bottom: 1px #eee solid;
 
-
-div.shadow-1 {
-  padding: 20px;
-}
-
-ul.d-menu {
-  margin-top: 35px;
-
-}
-
-div.box {
-  outline-color: #b7c6cd;
-  background-color: #607d8b;
-  width: 84px;
-  height: 76px;
-  color: white;
-  padding: 10px;
-  margin: 10px;
-  margin-left: 10px;
-  border-radius: .25rem;
-  text-shadow: 0px 1px #111010;
-
-  span {
+  span.titulo-secao {
     font-weight: bold;
-    font-size: 26px;
-    text-align: center;
-    display: block;
-    margin-top: -12px;
-  }
-
-  span.detail-mes {
-    font-size: 16px;
-    margin-top: -9px;
-    border-bottom:1px solid white;
-  }
-  span.detail-hour {
-    font-size: 16px;
-    margin-top: -4px;
-  }
-}
-
-div.agendamento-detalhe {
-
-span {
-  font-size: 12px;
-  font-weight: bold;
-}
-
-  p {
-    font-size: 16px;
-    margin-top: 5px;
-    margin-bottom: -5px;
-    font-weight: bold;
-    //color: #60a917;
-  }
-  span.status {
-    margin-top: -12px;
-  }
-
-  span.especialidade {
-    color:#607d8b
-  }
-  span.detail-hour {
-    margin-left: 10px;
+    color: green;
   }
 }
 
 .box-shadow {
   box-shadow: 0 2px 10px 0 rgba(0,0,0,.16),0 2px 5px 0 rgba(0,0,0,.26);
-
+  margin-bottom: 30px !important;
 }
-
 
 div {
-  button.dropdown-toggle {
-    margin-right: 30px;
-    margin-top: 9px;
+  button {
+    margin: 10px;
   }
 }
 
-hr {
-  background-color: #e5e5e5;
+div.card-header {
+  background: #4bae2d;
+  color: white;
+  margin-top: -18px;
+  margin-bottom: -15px;
+
 }
 
-div.remark {
-  p {
-    text-align: center;
-    font-weight: bold;
-  }
-}

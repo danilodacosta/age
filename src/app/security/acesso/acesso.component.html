@@ -1,0 +1,65 @@
+<div class="container mt-16">
+  <div class="card shadow-1 cell-md-12 cell-lg-8 mx-auto">
+    <div class="card-header">
+      <span class="mif-user-plus mif-4x place-right" style="margin-top: -10px;"></span>
+      <b>AGE</b> | Cadastro
+      <p class="login-box-msg">Faça agora mesmo o seu cadastro e comece a utilizar o AGE</p>
+      <hr class="thin mt-4 mb-4 bg-white">
+    </div>
+    <div class="card-content p-2">
+      <form>
+        <br>
+        <div class="row">
+          <app-form-field-error class="cell-12" errorMessage="O campo nome completo é obrigatório">
+            <input formControlName="name" type="text" data-role="input" placeholder="Nome Completo">
+          </app-form-field-error>
+        </div>
+
+        <div class="row">
+          <app-form-field-error class="cell-lg-6 cell-sm-12">
+            <input formControlName="password" type="text" data-role="input" placeholder="Telefone">
+          </app-form-field-error>
+
+          <app-form-field-error class="cell-lg-6 cell-sm-12" errorMessage="O campo celular é obrigatório">
+            <input formControlName="password" type="text" data-role="input" placeholder="Celular">
+          </app-form-field-error>
+
+        </div>
+
+        <div class="row">
+          <app-form-field-error class="cell-lg-6 cell-sm-12" errorMessage="O campo email completo é obrigatório">
+            <input formControlName="email" type="text" data-role="input" placeholder="Email">
+          </app-form-field-error>
+
+          <app-form-field-error class="cell-lg-6 cell-sm-12" errorMessage="O campo usuário é obrigatório">
+            <input formControlName="username" type="text" data-role="input" placeholder="usuário">
+          </app-form-field-error>
+        </div>
+        <div class="row">
+          <app-form-field-error class="cell-lg-6 cell-sm-12" errorMessage="O campo senha é obrigatório">
+            <input formControlName="password" type="password" data-role="input" data-prepend="<span class='mif-key'>"
+              placeholder="senha">
+          </app-form-field-error>
+
+          <app-form-field-error class="cell-lg-6 cell-sm-12" errorMessage="O campo confirmação de senha é obrigatório">
+            <input formControlName="password" type="password" data-role="input" data-prepend="<span class='mif-key'>"
+              placeholder="confirmação de senha">
+          </app-form-field-error>
+        </div>
+
+        <div class="form-group mt-10 mb-5">
+          <p class="text-center">Tem uma conta? <a routerLink="['login']">Faça login</a></p>
+          <br>
+          <br>
+          <button class="button rounded primary float-right drop-shadow shadow-1 ">Cadastre-se</button>
+          <!-- <div *ngIf="validandoLogin" data-role="activity" class="float-right loading" data-type="simple"
+                    data-style="color"></div>-->
+        </div>
+        <br>
+
+      </form>
+    </div>
+
+  </div>
+
+</div>

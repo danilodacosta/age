@@ -1,66 +1,48 @@
-<!-- INÍCIO DO CONTEÚDO
-<section class="content login-content" style="margin: 10% auto">
-  <div class="login-logo">
-    <b>MEAT</b> | Login
-  </div>
-  <div class="col-xs-12 col-sm-offset-3 col-sm-6 login-box-body">
-    <p class="login-box-msg">Por favor, efetue o login para continuar</p>
-
-    <form [formGroup]="loginForm" class="login-form">
-        <input type="text" formControlName="username" class="form-control" placeholder="Usuário">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-
-        <input type="password" formControlName="password" class="form-control" placeholder="Password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-
-      <div class="row">
-
-        <div class="col-xs-offset-8 col-xs-4">
-          <button type="submit" (click)="login()"  [disabled]="loginForm.invalid" class="btn btn-primary btn-block btn-flat">Entrar</button>
-        </div>
-
-      </div>
-    </form>
-  </div>
-</section>
-<!-- FIM DO CONTEÚDO -->
-
 <div class="container mt-16">
-  <div class="grid">
-    <div class="row">
-      <form [formGroup]="loginForm" class="p-6 mx-auto border bd-default shadow-1">
-        <span class="mif-lock mif-4x place-right" style="margin-top: -10px;"></span>
-        <b>AGE</b> | Login
-        <p class="login-box-msg">Por favor, efetue o login para continuar</p>
-        <hr class="thin mt-4 mb-4 bg-white">
-
+  <div class="card shadow-1 cell-md-12 cell-lg-6 mx-auto">
+    <div class="card-header">
+      <span class="mif-lock mif-4x place-right" style="margin-top: -10px;"></span>
+      <b>AGE</b> | Login
+      <p class="login-box-msg">Por favor, efetue o login para continuar</p>
+      <hr class="thin mt-4 mb-4 bg-white">
+    </div>
+    <div class="card-content p-2">
+      <form [formGroup]="loginForm">
+        <br>
         <app-form-field-error errorMessage="O campo usuário é obrigatório">
           <input formControlName="username" type="text" data-role="input" data-prepend="<span class='mif-user'>"
             placeholder="usuário">
         </app-form-field-error>
-       
+
         <app-form-field-error errorMessage="O campo senha é obrigatório">
           <input formControlName="password" type="password" data-role="input" data-prepend="<span class='mif-key'>"
-          placeholder="senha" >
+            placeholder="senha">
         </app-form-field-error>
-      
-       <app-form-field-error errorMessage="O campo senha é obrigatório" label="Perfil de Acesso"> 
-        <select formControlName="perfil" data-role="select">
-          <option value="1" data-template="<span class='mif-user icon'></span> $1">Cliente</option>
-          <option value="2" data-template="<span class='mif-user-md icon'></span> $1">Prestador</option>
-        </select>
-      </app-form-field-error>
 
-        <div class="form-group mt-10">
+
+        <app-form-field-error errorMessage="O campo senha é obrigatório" label="Perfil de Acesso">
+          <br>
+          <input data-cls-caption="fg-cyan text-bold" data-style="2" data-role="radio" type="radio" value="1"
+            formControlName="perfil">
+          <span class='mif-user icon'></span><span class="mr-3">Cliente</span>
+          <input data-cls-caption="fg-cyan text-bold" data-style="2" data-role="radio" type="radio" value="2"
+            formControlName="perfil">
+          <span class='mif-user-md icon'></span>
+          <span>Prestador</span>
+        </app-form-field-error>
+
+        <div class="form-group mt-10 mb-5">
+          <p class="text-center">É seu primeiro acesso? <a href="/">Cadastre-se</a></p>
+          <br>
+          <br>
           <button *ngIf="!validandoLogin" [disabled]="loginForm.invalid" (click)="login()"
-            class="button primary float-right drop-shadow">Entrar</button>
-          <p class="float-left">É seu primeiro acesso? <a href="/">Cadastre-se</a></p>
+            class="button rounded primary float-right drop-shadow shadow-1">Entrar</button>
           <div *ngIf="validandoLogin" data-role="activity" class="float-right loading" data-type="simple"
             data-style="color"></div>
         </div>
         <br>
-        invalid form: {{loginForm.invalid}}
       </form>
     </div>
   </div>
+
 </div>

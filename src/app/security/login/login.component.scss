@@ -1,3 +1,8 @@
 div.loading {
   margin-top: -24px;
 }
+div {
+  input[type=text]{ 
+    border-color : red !important;
+   }
+}

@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.fb.group({
       username: this.fb.control('', [Validators.required]),
-      password: this.fb.control('', [Validators.required])
+      password: this.fb.control('', [Validators.required]),
+      perfil: this.fb.control('', [Validators.required])
     });
 
     this.navigateTo = this.activatedRoute.snapshot.params['to'] || btoa('/');
@@ -35,10 +36,10 @@ export class LoginComponent implements OnInit {
   login() {
     this.validandoLogin = true;
     this.loginService
-      .login(this.loginForm.value.username, this.loginForm.value.password)
+      .login(this.loginForm.value.perfil, this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
         user => {
-          Metro.notify.create(`Bem vindo(a) ${user.username}`, 'Olá', {cls: 'secondary'});
+          Metro.notify.create(`Bem vindo(a) ${user.Usuario}`, 'Olá', {cls: 'secondary'});
         }, // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
         // httpErrorResponse
         error => {

@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './security/loggedin.guard';
 import { ApplicationErrorHandler } from './app.error-handler';
 import { AuthInterceptor } from './security/auth.interceptor';
 import { LoginService } from './security/login/shared/login.service';
@@ -31,6 +32,7 @@ import { DetalhesComponent } from './meus-agendamentos/visualizar-agendamento/de
 import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
 import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-agendamento/visualizar-agendamento.component';
 import { LoginComponent } from './security/login/login.component';
+import { FormFieldErrorComponent } from './shared/components/form-field-error/form-field-error.component';
 
 
 @NgModule({
@@ -51,7 +53,8 @@ import { LoginComponent } from './security/login/login.component';
     DetalhesComponent,
     ReagendarComponent,
     VisualizarAgendamentoComponent,
-    LoginComponent
+    LoginComponent,
+    FormFieldErrorComponent
   ],
   imports: [
     FormsModule,
@@ -62,6 +65,7 @@ import { LoginComponent } from './security/login/login.component';
   ],
   // { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
   providers: [EmpreendimentoService,
+              LoggedInGuard,
               PrestadorService,
               ConvenioService,
               AgendamentoService,

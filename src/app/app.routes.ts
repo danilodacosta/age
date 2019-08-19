@@ -1,3 +1,4 @@
+import { LoggedInGuard } from './security/loggedin.guard';
 import { LoginComponent } from './security/login/login.component';
 import { ReagendarComponent } from './meus-agendamentos/visualizar-agendamento/reagendar/reagendar.component';
 
@@ -5,14 +6,14 @@ import { DetalhesComponent } from './meus-agendamentos/visualizar-agendamento/de
 import { MeusAgendamentosComponent } from './meus-agendamentos/meus-agendamentos.component';
 import { AgendamentoComponent } from './agendamento/agendamento.component';
 import { EmpreendimentoComponent } from './empreendimento/empreendimento.component';
-import { Routes } from '@angular/router';
+import { Routes, CanActivate } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { VisualizarAgendamentoComponent } from './meus-agendamentos/visualizar-agendamento/visualizar-agendamento.component';
 
 
 export const ROUTES: Routes = [
-  { path: '' , component: HomeComponent },
+  { path: '' , component: HomeComponent , canActivate: [LoggedInGuard] },
   { path: 'login/:to', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'empreendimentos' , component: EmpreendimentoComponent },

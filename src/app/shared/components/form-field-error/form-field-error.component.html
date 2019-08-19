@@ -1,0 +1,5 @@
+<div class="form-group">
+  <span class="control-label sr-only" for="inputSuccess">{{label}}</span>
+  <ng-content></ng-content>
+  <span class="help-block campo-invalido" *ngIf="showTip && hasError()">{{errorMessage}}</span>
+</div>

@@ -22,14 +22,14 @@ export class LoginService {
     return this.user !== undefined;
   }
 
-  login(username: string, password: string): Observable<User> {
+  login(type: string, username: string, password: string): Observable<User> {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/x-www-form-urlencoded",
         "'Access-Control-Allow-Origin": "*"
       })
     };
-    const body = `username=${username}&password=${password}&grant_type=password`;
+    const body = `type=${type}&username=${username}&password=${password}&grant_type=password`;
 
     // https://cors-anywhere.herokuapp.com/
     return this.httpClient
@@ -39,12 +39,15 @@ export class LoginService {
         httpOptions
       )
       .pipe(
-        map(token => {
+        map(response => {
 
           const user = {
+            type,
             username,
             password,
-            access_token : token.access_token
+            idUsuario: response.idUsuario,
+            Usuario: response.Usuario,
+            access_token : response.access_token
            };
 
           return this.user = user;
@@ -67,5 +70,6 @@ export class LoginService {
 
   logout() {
     this.user = undefined;
+    this.router.navigate(['/login']);
   }
 }

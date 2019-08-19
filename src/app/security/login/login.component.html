@@ -33,19 +33,33 @@
         <b>AGE</b> | Login
         <p class="login-box-msg">Por favor, efetue o login para continuar</p>
         <hr class="thin mt-4 mb-4 bg-white">
-        <div class="form-group">
+
+        <app-form-field-error errorMessage="O campo usuário é obrigatório">
           <input formControlName="username" type="text" data-role="input" data-prepend="<span class='mif-user'>"
             placeholder="usuário">
-        </div>
-        <div class="form-group">
+        </app-form-field-error>
+       
+        <app-form-field-error errorMessage="O campo senha é obrigatório">
           <input formControlName="password" type="password" data-role="input" data-prepend="<span class='mif-key'>"
-            placeholder="senha" data-validate="required minlength=6">
-        </div>
+          placeholder="senha" >
+        </app-form-field-error>
+      
+       <app-form-field-error errorMessage="O campo senha é obrigatório" label="Perfil de Acesso"> 
+        <select formControlName="perfil" data-role="select">
+          <option value="1" data-template="<span class='mif-user icon'></span> $1">Cliente</option>
+          <option value="2" data-template="<span class='mif-user-md icon'></span> $1">Prestador</option>
+        </select>
+      </app-form-field-error>
+
         <div class="form-group mt-10">
-          <button *ngIf="!validandoLogin" (click)="login()" class="button primary float-right">Entrar</button>
-          <p class="float-left">Não tem uma conta? <a href="/">Crie uma!</a></p>
-          <div  *ngIf="validandoLogin" data-role="activity" class="float-right loading" data-type="simple" data-style="color"></div>
+          <button *ngIf="!validandoLogin" [disabled]="loginForm.invalid" (click)="login()"
+            class="button primary float-right drop-shadow">Entrar</button>
+          <p class="float-left">É seu primeiro acesso? <a href="/">Cadastre-se</a></p>
+          <div *ngIf="validandoLogin" data-role="activity" class="float-right loading" data-type="simple"
+            data-style="color"></div>
         </div>
+        <br>
+        invalid form: {{loginForm.invalid}}
       </form>
     </div>
   </div>

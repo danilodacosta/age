@@ -7,8 +7,8 @@
       </div>
       <div class="card-content p-2">
         <div class="avatar">
-          <!--<div *ngIf="!prestador?.uriFoto" data-role="activity" data-type="simple" data-style="color"></div>-->
-          <img src="http://www.mscfilho.net/Imagens/NIOBOT/Dr%20Jo%C3%A3o%20Evandro.jpg">
+          <div *ngIf="!item?.FotoPrestador" data-role="activity" data-type="simple" data-style="color"></div>
+          <img *ngIf="item?.FotoPrestador"  [src]="item?.FotoPrestador">
         </div>
         <div class="dados-prestador">
           <p><strong>{{item?.Tratamento}} {{item?.NomePrestador}}</strong></p>

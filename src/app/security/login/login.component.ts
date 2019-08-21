@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       .login(this.loginForm.value.perfil, this.loginForm.value.username, this.loginForm.value.password)
       .subscribe(
         user => {
+          console.log(user)
           Metro.notify.create(`Bem vindo(a) ${user.Usuario}`, 'Olá', {cls: 'secondary'});
         }, // this.notificationService.notify(`Bem vindo(a), ${user.name}`),
         // httpErrorResponse

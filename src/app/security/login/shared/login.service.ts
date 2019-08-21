@@ -40,12 +40,11 @@ export class LoginService {
       )
       .pipe(
         map(response => {
-
           const user = {
             type,
             username,
             password,
-            idUsuario: response.idUsuario,
+            IdUsuario: response.IdUsuario,
             Usuario: response.Usuario,
             access_token : response.access_token
            };

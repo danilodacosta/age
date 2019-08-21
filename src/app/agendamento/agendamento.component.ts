@@ -1,3 +1,4 @@
+import { LoginService } from './../security/login/shared/login.service';
 import { AgendamentoService } from './../agendamento/agendamento.service';
 import { DateFormatStringPipe } from './../shared/DataFormatPipeString.pipe';
 import { DateFormatPipe } from './../shared/DateFormatPipe.pipe';
@@ -37,6 +38,7 @@ export class AgendamentoComponent implements OnInit {
   constructor(
     private empreendimentoService: EmpreendimentoService,
     private agendamentoService: AgendamentoService,
+    private loginService: LoginService,
     private route: ActivatedRoute,
     private dateFomartPipe: DateFormatPipe,
     private dateFomartStringPipe: DateFormatStringPipe
@@ -142,7 +144,7 @@ export class AgendamentoComponent implements OnInit {
     const agendamento: Agendamento = new Agendamento();
     agendamento.Empreendimento = this.route.snapshot.params.id;
     agendamento.Prestador = this.prestadorSelecionado.id.toString();
-    agendamento.Cliente = '42';
+    agendamento.Cliente = this.loginService.user.IdUsuario;
     agendamento.AgendaPadrao = '1';
     agendamento.TipoAgendamento = '1';
     agendamento.TipoAgenda = '0';

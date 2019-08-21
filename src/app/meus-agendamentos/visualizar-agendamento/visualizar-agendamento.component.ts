@@ -17,6 +17,7 @@ export class VisualizarAgendamentoComponent implements OnInit {
   public prestador: Prestador;
   public empreendimento: Empreendimento;
 
+
   constructor(private route: ActivatedRoute,
               private agendamentoService: AgendamentoService,
               private prestadorService: PrestadorService,
